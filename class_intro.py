@@ -6,18 +6,14 @@ import sys
 class Intro:
     def __init__(self, surface1, black_color):
         pygame.init()
-        # Using RGB values
-        #              R  G   B
-        # black_color = (0, 0, 0)
-        # sc_x = 1550
-        # sc_y = 800
 
-        # Make a surface there i can draw my pictures
-        # surface1 = pygame.display.set_mode((sc_x, sc_y))
+        # Setting up the name of the pygame window
         pygame.display.set_caption("Stavningsleken")
 
-        logo_image = ""  # pygame.image.load("D:/Stavningsleken/spv1/meny bilder/stavningsleken.png")
-        intro_image = ""  # pygame.image.load("D:/Stavningsleken/spv1/bilder/elefant.png")
+        logo_image = ""
+        intro_image = ""
+
+        # Load the music
         pygame.mixer.music.load("bensound-sunny.mp3")
 
         self.surface1 = surface1
@@ -27,8 +23,8 @@ class Intro:
 
     def load_start_images(self):
         # Load the logo and the image to the screen.
-        self.logo_image = pygame.image.load("D:/Stavningsleken/spv1/meny bilder/stavningsleken.png")
-        self.intro_image = pygame.image.load("D:/Stavningsleken/spv1/bilder/apa.png")
+        self.logo_image = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/stavningsleken.png")
+        self.intro_image = pygame.image.load("C:\This is what i use to github stavningsleken/bilder/elefant.png")
 
     def fill_the_screen(self):
         self.surface1.fill(self.black_color)
