@@ -12,11 +12,12 @@ from mouse_cord_class import MouseCords
 from word_class import RandomWords
 from filehandling_class import MyFileHandling
 from button import Button
+from random_picture_class import RandomPictureGenerator
 
 # Variables that i need goes here:
 mx = 0  # This is the mouse tracker start coordinate x
 my = 0  # This is the mouse tracker start coordinate y
-black_color = (0, 0, 0)  # Black background color
+black_color = (255, 255, 255)  # Black background color
 sc_x = 1550  # Screen size in x
 sc_y = 800  # Screen size in y
 path_to_word_file = "bildfilen.txt"  # Filepath to the file with all words.
@@ -40,6 +41,10 @@ turn_on_music_button = Button(30, 120, turn_on_music_img)
 main_meny_button = Button(30, 15, main_meny_img)
 stopp_button = Button(30, 180, stopp_img)
 start_button = Button(570, 385, start_img)
+
+# Creating an instance off random picture class
+rnd_obj = RandomPictureGenerator(surface1)
+chosen_random_word = rnd_obj.random_image_generator()
 
 # Starts playing the music here.
 intro_object.play_music()
@@ -74,9 +79,14 @@ def main():
             game_running = False
 
         if start_button.draw_button_to_screen(surface1):
-            # Todo make a call to the word class and random an image
-            # Todo and get a word as well.
-            game_running = False
+            # Gets a random word from the line_list in class method random_image_generator
+            random_word = rnd_obj.random_image_generator()
+
+            # Load upp the image who is corresponding to the random word we got above
+            random_image = rnd_obj.display_next_image(random_word)
+
+            # Show the image on the screen.
+            rnd_obj.display_screen(random_image)
 
         # Pygame boiler code
         for event in pygame.event.get():
@@ -85,8 +95,8 @@ def main():
                 quit()
 
             # Hunting the mouse cords. (need this for placing the buttons on the screen)
-            mouse_cords_tracker.hunt_cords()
-            mouse_cords_tracker.write_out_cords()
+            # mouse_cords_tracker.hunt_cords()
+            # mouse_cords_tracker.write_out_cords()
 
             # Prints out the word i selected.
             collected_word = read_my_file.print_content()
