@@ -9,7 +9,8 @@ class Intro:
 
         # Make a surface there i can draw my pictures
         # surface1 = pygame.display.set_mode((sc_x, sc_y))
-        pygame.display.set_caption("Stavningsleken")
+        pygame.display.set_caption("Stavningsleken alpha version 0.3 Created by: Lenny Ryd-Weissner "
+                                   "and its for school project and my kids who needs to train on spelling.")
 
         logo_image = ""
         intro_image = ""

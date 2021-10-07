@@ -30,27 +30,28 @@ surface1 = pygame.display.set_mode((sc_x, sc_y))
 start_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Starta.png")
 stopp_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Avsluta.png")
 main_meny_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Huvud meny.png")
-turn_off_music_img = pygame.image.load(
-    "C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
+turn_off_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
 turn_on_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Sätt på musiken.png")
+next_picture_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Nästa bild.png.")
 
 # Loading start screen images here.
 main_logo_start_screen_img = pygame.image.load(
-    "C:\This is what i use to github stavningsleken/start_bilder/Stavningsleken_logo.png")
+    "C:\This is what i use to github stavningsleken/start_bilder/Stavningsleken_huge.png")
 start_the_game_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Starta spelet.png")
 end_the_game_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Avsluta spelet.png")
 
 # Button instances goes here
-stopp_music_button = Button(30, 65, turn_off_music_img)
-turn_on_music_button = Button(30, 120, turn_on_music_img)
+stopp_music_button = Button(30, 485, turn_off_music_img)
+turn_on_music_button = Button(30, 420, turn_on_music_img)
 main_meny_button = Button(30, 15, main_meny_img)
-stopp_button = Button(30, 180, stopp_img)
+stopp_button = Button(30, 550, stopp_img)
 start_button = Button(570, 385, start_img)
+next_random_picture_button = Button(570, 385, next_picture_img)
 
 # Start Screen button instances goes here
-main_logo_button = Button(460, 30, main_logo_start_screen_img)
-start_the_game_button = Button(460, 150, start_the_game_img)
-end_the_game_button = Button(460, 250, end_the_game_img)
+main_logo_button = Button(275, 30, main_logo_start_screen_img)
+start_the_game_button = Button(460, 180, start_the_game_img)
+end_the_game_button = Button(460, 280, end_the_game_img)
 
 # creates all my instances here
 intro_object = Intro(surface1, black_color)
@@ -119,8 +120,8 @@ def main_game_loop():
 
     while game_running:
 
-        if main_meny_button.draw_button_to_screen(surface1):
-            pass
+       # if main_meny_button.draw_button_to_screen(surface1):
+        #    pass
 
         if stopp_music_button.draw_button_to_screen(surface1):
             intro_object.stop_music()
@@ -131,7 +132,7 @@ def main_game_loop():
         if stopp_button.draw_button_to_screen(surface1):
             game_running = False
 
-        if start_button.draw_button_to_screen(surface1):
+        if next_random_picture_button.draw_button_to_screen(surface1):
             # Gets a random word from the line_list in class method random_image_generator
             random_word = rnd_obj.random_image_generator()
 
