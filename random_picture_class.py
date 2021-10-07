@@ -23,7 +23,7 @@ class RandomPictureGenerator:
 
     def display_screen(self, image2):
         self.display_surface.fill((255, 255, 255))
-        self.display_surface.blit(image2, (575, 80))
+        self.display_surface.blit(image2, (575, 180))
 
     def random_image_generator(self):
         self.f = open("C:/This is what i use to github stavningsleken/bildfilen.txt", "r", encoding="utf-8")
