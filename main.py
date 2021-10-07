@@ -96,6 +96,8 @@ def the_start_screen():
 
 
 def main_game_loop():
+    global game_running
+    game_running = True
     # Starts playing the music here.
     intro_object.play_music()
 
@@ -114,7 +116,7 @@ def main_game_loop():
     # Getting a random word from the collected_list
     selected_word = RandomWords(collected_list)
 
-    global game_running
+
     while game_running:
 
         if main_meny_button.draw_button_to_screen(surface1):

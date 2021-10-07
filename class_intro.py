@@ -22,13 +22,13 @@ class Intro:
 
     def load_start_images(self):
         # Load the logo and the image to the screen.
-        self.logo_image = pygame.image.load("C:/This is what i use to github stavningsleken/meny bilder/stavningsleken.png")
+        # self.logo_image = pygame.image.load("C:/This is what i use to github stavningsleken/meny bilder/stavningsleken.png")
         self.intro_image = pygame.image.load("C:/This is what i use to github stavningsleken/bilder/apa.png")
 
     def fill_the_screen(self):
         self.surface1.fill(self.black_color)
         self.surface1.blit(self.intro_image, (555, 180))
-        self.surface1.blit(self.logo_image, (130, 300))
+        # self.surface1.blit(self.logo_image, (130, 300))
 
     @staticmethod
     def play_music():
