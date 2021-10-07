@@ -81,7 +81,7 @@ def main():
         if start_button.draw_button_to_screen(surface1):
             # Gets a random word from the line_list in class method random_image_generator
             random_word = rnd_obj.random_image_generator()
-
+            
             # Load upp the image who is corresponding to the random word we got above
             random_image = rnd_obj.display_next_image(random_word)
 
