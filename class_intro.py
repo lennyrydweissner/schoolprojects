@@ -9,8 +9,7 @@ class Intro:
 
         # Make a surface there i can draw my pictures
         # surface1 = pygame.display.set_mode((sc_x, sc_y))
-        pygame.display.set_caption("Stavningsleken alpha version 0.3 Created by: Lenny Ryd-Weissner "
-                                   "and its for school project and my kids who needs to train on spelling.")
+        pygame.display.set_caption("Stavningsleken alpha version 0.3 school project")
 
         logo_image = ""
         intro_image = ""
@@ -24,11 +23,11 @@ class Intro:
     def load_start_images(self):
         # Load the logo and the image to the screen.
         # self.logo_image = pygame.image.load("C:/This is what i use to github stavningsleken/meny bilder/stavningsleken.png")
-        self.intro_image = pygame.image.load("C:/This is what i use to github stavningsleken/bilder/apa.png")
+        self.intro_image = pygame.image.load("C:/This is what i use to github stavningsleken/bilder/katt.png")
 
     def fill_the_screen(self):
         self.surface1.fill(self.black_color)
-        self.surface1.blit(self.intro_image, (555, 180))
+        self.surface1.blit(self.intro_image, (580, 320))
         # self.surface1.blit(self.logo_image, (130, 300))
 
     @staticmethod

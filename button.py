@@ -18,7 +18,7 @@ class Button:
         # Check for mouse over and the clicked coordinate conditions
         if self.rect.collidepoint(pos):
 
-            button = pygame.mouse.get_pressed()  # Button 0 = left mousebutton , 1 = clicked
+            button = pygame.mouse.get_pressed()  # Button 0 = left mouse-button , 1 = clicked
             if button[0] == 1:
                 if not self.clicked:
                     self.clicked = True
