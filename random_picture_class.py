@@ -22,7 +22,7 @@ class RandomPictureGenerator:
         self.random_image = random_image
 
     def display_screen(self, image2):
-        self.display_surface.fill((255, 255, 255))
+        # self.display_surface.fill((255, 255, 255))
         self.display_surface.blit(image2, (580, 320))
 
     def random_image_generator(self):

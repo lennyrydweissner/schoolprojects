@@ -16,12 +16,14 @@ from button import Button
 from random_picture_class import RandomPictureGenerator
 from text_box_class import TextBox
 
+# init pygame
 pygame.init()
+
 # Variables that i need goes here:
 mx = 0  # This is the mouse tracker start coordinate x
 my = 0  # This is the mouse tracker start coordinate y
 black_color = (255, 255, 255)  # Black background color
-sc_x = 1550  # Screen size in x
+sc_x = 1450  # Screen size in x
 sc_y = 800  # Screen size in y
 
 # Make the pygame screen
@@ -30,6 +32,7 @@ surface1 = pygame.display.set_mode((sc_x, sc_y))
 # Textbox variables.
 color_passive = pygame.Color('green')
 color_active = pygame.Color('black')
+
 # font = pygame.font.SysFont("verdana", 32)
 font = pygame.font.Font(None, 32)
 path_to_word_file = "bildfilen.txt"  # Filepath to the file with all words.
@@ -38,14 +41,16 @@ path_to_word_file = "bildfilen.txt"  # Filepath to the file with all words.
 start_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Starta.png")
 stopp_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Avsluta.png")
 main_meny_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Huvud meny.png")
-turn_off_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
+turn_off_music_img = pygame.image.load(
+    "C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
 turn_on_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Sätt på musiken.png")
 next_picture_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Nästa bild.png.")
 huge_logo_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Stavningsleken_huge.png")
 
 # Loading start screen images here.
 
-main_logo_start_screen_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Stavningsleken_huge.png")
+main_logo_start_screen_img = pygame.image.load(
+    "C:\This is what i use to github stavningsleken/start_bilder/Stavningsleken_huge.png")
 start_the_game_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Starta spelet.png")
 end_the_game_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Avsluta spelet.png")
 
@@ -68,16 +73,12 @@ end_the_game_button = Button(460, 280, end_the_game_img)
 intro_object = Intro(surface1, black_color)
 mouse_cords_tracker = MouseCords(mx, my)  # Not gonna use this then the game is done. just in development phase
 read_my_file = MyFileHandling(path_to_word_file)
-my_textbox = TextBox(570, 700, 140, 32, color_passive, color_active, font)
-my_textbox.draw(surface1)
 
 game_running = True
 
 
 def the_start_screen():
     start_screen_running = True
-
-    # intro_object.play_music()
 
     while start_screen_running:
         surface1.fill((255, 255, 255))
@@ -112,6 +113,7 @@ def the_start_screen():
 def main_game_loop():
     global game_running
     game_running = True
+
     # Starts playing the music here.
     intro_object.play_music()
 
@@ -123,6 +125,10 @@ def main_game_loop():
     # Creating an instance off random picture class
     rnd_obj = RandomPictureGenerator(surface1)
 
+    # Creating an instance of my textbox object
+    my_textbox = TextBox(570, 700, 140, 32, color_passive, color_active, font)
+    my_textbox.draw(surface1)
+
     chosen_random_word = rnd_obj.random_image_generator()
 
     # Getting the list of all words
@@ -130,9 +136,22 @@ def main_game_loop():
 
     # Getting a random word from the collected_list
     selected_word = RandomWords(collected_list)
+
+    # Setting up the clock who controls the fps
     clock = pygame.time.Clock()
 
     while game_running:
+
+        # Pygame boiler code
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            my_textbox.handle_event(event)
+            my_textbox.update()
+        surface1.fill((255, 255, 255))
+        my_textbox.draw(surface1)
 
         if main_logo_button2.draw_button_to_screen(surface1):
             pass
@@ -156,22 +175,16 @@ def main_game_loop():
             # Show the image on the screen.
             rnd_obj.display_screen(random_image)
 
-        # Pygame boiler code
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
-
             # Hunting the mouse cords. (need this for placing the buttons on the screen)
 
             # mouse_cords_tracker.hunt_cords()
             # mouse_cords_tracker.write_out_cords()
 
             # Prints out the word i selected.
-            collected_word = read_my_file.print_content()
             choosen_random_word = selected_word.random_word()
 
         # updates the screen
+        # pygame.display.update(pygame.Rect(570, 700, 140, 32))
         pygame.display.update()
         clock.tick(60)
 

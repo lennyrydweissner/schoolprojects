@@ -3,8 +3,8 @@ import pygame
 
 class TextBox:
 
-    def __init__(self, pos_x_of_txt_box, pos_y_of_txt_box, width, height, color_passive, color_active, font, user_text=''):
-        self.rect = pygame.Rect(pos_x_of_txt_box, pos_y_of_txt_box, width, height)
+    def __init__(self, pos_x, pos_y, width, height, color_passive, color_active, font, user_text=''):
+        self.rect = pygame.Rect(pos_x, pos_y, width, height)
         self.color_passive = color_passive
         self.color_active = color_active
         self.color = color = pygame.Color('blue')  # Border color of the txt box
@@ -42,13 +42,13 @@ class TextBox:
                 self.txt_surface = self.font.render(self.user_text, True, self.color)
 
     def update(self):
-        # If the user text, is bigger than the textbox resize it, looks kind of ugly but haven't
-        # found any better way to do it. (here C# and VB.net is the kings still..)
+        # If the user text, is bigger than the textbox resize it
         width = max(200, self.txt_surface.get_width() + 10)
         self.rect.w = width
 
     def draw(self, surface):
         # Blit the text to screen
         surface.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
+
         # Blit the rect to screen
         pygame.draw.rect(surface, self.color, self.rect, 2)
