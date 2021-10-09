@@ -45,10 +45,12 @@ class TextBox:
         # If the user text, is bigger than the textbox resize it
         width = max(200, self.txt_surface.get_width() + 10)
         self.rect.w = width
+        pygame.display.update(self.rect)
 
     def draw(self, surface):
         # Blit the text to screen
         surface.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
-
+        pygame.display.update(self.rect)
         # Blit the rect to screen
         pygame.draw.rect(surface, self.color, self.rect, 2)
+        pygame.display.update(self.rect)

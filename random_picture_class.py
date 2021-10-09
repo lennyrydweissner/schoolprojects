@@ -1,18 +1,18 @@
 import random
 import pygame
+from pygame.locals import *
 
 
 class RandomPictureGenerator:
 
     # Constructor
     def __init__(self, display_surface):
-
         # Class variables
-        line_list = []      # This list is for all the words it can randomize from
-        random_word = ""    # This is the variable who holds the random word later.
-        f = ""              # The file object, used to open the txt file.
-        full_path = ""      # Pathway variable, who will hold the path to the pictures
-        random_image = ""   # Variable to hold the random image
+        line_list = []  # This list is for all the words it can randomize from
+        random_word = ""  # This is the variable who holds the random word later.
+        f = ""  # The file object, used to open the txt file.
+        full_path = ""  # Pathway variable, who will hold the path to the pictures
+        random_image = ""  # Variable to hold the random image
 
         self.line_list = line_list
         self.display_surface = display_surface
@@ -23,7 +23,11 @@ class RandomPictureGenerator:
 
     def display_screen(self, image2):
         # self.display_surface.fill((255, 255, 255))
-        self.display_surface.blit(image2, (580, 320))
+        image2 = pygame.transform.scale(image2, (200, 200))
+        my_rect = image2.get_rect()
+        my_rect.center = (630, 400)
+        # screen.blit(my_image, my_rect)
+        self.display_surface.blit(image2, my_rect)
 
     def random_image_generator(self):
         self.f = open("C:/This is what i use to github stavningsleken/bildfilen.txt", "r", encoding="utf-8")
@@ -35,5 +39,6 @@ class RandomPictureGenerator:
 
     def display_next_image(self, random_word):
         self.full_path = "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png"
-        self.random_image = pygame.image.load("C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png")
+        self.random_image = pygame.image.load(
+            "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png")
         return self.random_image

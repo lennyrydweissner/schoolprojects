@@ -14,7 +14,7 @@ from word_class import RandomWords
 from filehandling_class import MyFileHandling
 from button import Button
 from random_picture_class import RandomPictureGenerator
-from text_box_class import TextBox
+from rewritten_textbox_class import RewrittenTextbox
 
 # init pygame
 pygame.init()
@@ -30,8 +30,8 @@ sc_y = 800  # Screen size in y
 surface1 = pygame.display.set_mode((sc_x, sc_y))
 
 # Textbox variables.
-color_passive = pygame.Color('green')
-color_active = pygame.Color('black')
+# color_passive = pygame.Color('green')
+# color_active = pygame.Color('black')
 
 # font = pygame.font.SysFont("verdana", 32)
 font = pygame.font.Font(None, 32)
@@ -74,6 +74,19 @@ intro_object = Intro(surface1, black_color)
 mouse_cords_tracker = MouseCords(mx, my)  # Not gonna use this then the game is done. just in development phase
 read_my_file = MyFileHandling(path_to_word_file)
 
+# Testing new stuff here
+base_font = pygame.font.Font(None, 32)
+user_text = ''
+# input_rect = pygame.Rect(570, 700, 140, 32)
+
+color_active = pygame.Color('lightskyblue3')
+color_passive = pygame.Color('chartreuse4')
+color = color_passive
+active = False
+
+my_text_box = RewrittenTextbox(570, 700, 140, 32, color_passive, color_active, base_font, surface1, active)
+my_text_box.draw()
+
 game_running = True
 
 
@@ -81,6 +94,7 @@ def the_start_screen():
     start_screen_running = True
 
     while start_screen_running:
+
         surface1.fill((255, 255, 255))
 
         if main_logo_button.draw_button_to_screen(surface1):
@@ -88,6 +102,7 @@ def the_start_screen():
 
         if start_the_game_button.draw_button_to_screen(surface1):
             # Start the game then user click on the button
+            surface1.fill((255, 255, 255))
             main_game_loop()
 
         if end_the_game_button.draw_button_to_screen(surface1):
@@ -111,7 +126,7 @@ def the_start_screen():
 
 
 def main_game_loop():
-    global game_running
+    global game_running, event, user_text, active
     game_running = True
 
     # Starts playing the music here.
@@ -124,10 +139,6 @@ def main_game_loop():
 
     # Creating an instance off random picture class
     rnd_obj = RandomPictureGenerator(surface1)
-
-    # Creating an instance of my textbox object
-    my_textbox = TextBox(570, 700, 140, 32, color_passive, color_active, font)
-    my_textbox.draw(surface1)
 
     chosen_random_word = rnd_obj.random_image_generator()
 
@@ -148,10 +159,43 @@ def main_game_loop():
                 pygame.quit()
                 quit()
 
-            my_textbox.handle_event(event)
-            my_textbox.update()
-        surface1.fill((255, 255, 255))
-        my_textbox.draw(surface1)
+            my_text_box.catch_user_events(event)
+
+            # if event.type == pygame.MOUSEBUTTONDOWN:
+            #     if input_rect.collidepoint(event.pos):
+            #         active = True
+            #     else:
+            #         active = False
+            #
+            # if event.type == pygame.KEYDOWN:
+            #
+            #     # Check for backspace
+            #     if event.key == pygame.K_BACKSPACE:
+            #         # get text input from 0 to -1 i.e. end.
+            #         user_text = user_text[:-1]
+            #     else:
+            #         user_text += event.unicode
+            #
+            #         if event.key == pygame.K_RETURN:
+            #             print(user_text)
+            #             user_text = ''
+            #             active = False
+            #             color = color_passive
+            #
+        #
+        # if active:
+        #     color = color_active
+        # else:
+        #     color = color_passive
+        my_text_box.draw()
+       # pygame.draw.rect(surface1, color, input_rect)
+
+        my_text_box.update()
+        # text_surface = base_font.render(user_text, True, (255, 255, 255))
+        #
+        # surface1.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
+        #
+        # input_rect.w = max(200, text_surface.get_width() + 10)
 
         if main_logo_button2.draw_button_to_screen(surface1):
             pass
@@ -166,26 +210,19 @@ def main_game_loop():
             game_running = False
 
         if next_random_picture_button.draw_button_to_screen(surface1):
+            surface1.fill((255, 255, 255))
             # Gets a random word from the line_list in class method random_image_generator
             random_word = rnd_obj.random_image_generator()
             print(random_word)
+
             # Load upp the image who is corresponding to the random word we got above
             random_image = rnd_obj.display_next_image(random_word)
 
             # Show the image on the screen.
             rnd_obj.display_screen(random_image)
 
-            # Hunting the mouse cords. (need this for placing the buttons on the screen)
+        pygame.display.flip()
 
-            # mouse_cords_tracker.hunt_cords()
-            # mouse_cords_tracker.write_out_cords()
-
-            # Prints out the word i selected.
-            choosen_random_word = selected_word.random_word()
-
-        # updates the screen
-        # pygame.display.update(pygame.Rect(570, 700, 140, 32))
-        pygame.display.update()
         clock.tick(60)
 
 
