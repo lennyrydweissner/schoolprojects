@@ -154,7 +154,8 @@ def main_game_loop():
 
     # This is the block that loads in the gaming picture
     # first image you should spell right on.
-    random_word = rnd_obj.random_image_generator()
+    rnd_obj.load_list_to_pick_random_word_from()
+    random_word = rnd_obj.get_computer_randomized_word_from_list()
     random_image = rnd_obj.display_next_image(random_word)
     rnd_obj.display_screen(random_image)
 
@@ -201,8 +202,7 @@ def main_game_loop():
         if next_random_picture_button.draw_button_to_screen(surface1):
             surface1.fill((255, 255, 255))
             # Gets a random word from the line_list in class method random_image_generator
-            random_word = rnd_obj.random_image_generator()
-            # print(random_word)
+            random_word = rnd_obj.get_computer_randomized_word_from_list()
 
             # Load upp the image who is corresponding to the random word we got above
             random_image = rnd_obj.display_next_image(random_word)
