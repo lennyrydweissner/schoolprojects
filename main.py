@@ -86,6 +86,7 @@ active = False
 
 my_text_box = RewrittenTextbox(570, 700, 140, 32, color_passive, color_active, base_font, surface1, active)
 my_text_box.draw()
+control = False
 
 game_running = True
 
@@ -126,32 +127,42 @@ def the_start_screen():
 
 
 def main_game_loop():
-    global game_running, event, user_text, active
+    global game_running, event, active
+
     game_running = True
 
     # Starts playing the music here.
     intro_object.play_music()
 
     # Start the intro scene on screen
-
     intro_object.load_start_images()
     intro_object.fill_the_screen()
 
     # Creating an instance off random picture class
     rnd_obj = RandomPictureGenerator(surface1)
 
-    chosen_random_word = rnd_obj.random_image_generator()
+    # chosen_random_word = rnd_obj.random_image_generator()
 
     # Getting the list of all words
     collected_list = read_my_file.read_the_file_animal_list()
 
     # Getting a random word from the collected_list
-    selected_word = RandomWords(collected_list)
+    # selected_word = RandomWords(collected_list)
 
     # Setting up the clock who controls the fps
     clock = pygame.time.Clock()
 
+    # This is the block that loads in the gaming picture
+    # first image you should spell right on.
+    random_word = rnd_obj.random_image_generator()
+    random_image = rnd_obj.display_next_image(random_word)
+    rnd_obj.display_screen(random_image)
+
     while game_running:
+
+        # Clear what was written in the user_input_word
+        # every time the loop turns around
+        user_input_word = my_text_box.clear_written_word()
 
         # Pygame boiler code
         for event in pygame.event.get():
@@ -160,42 +171,20 @@ def main_game_loop():
                 quit()
 
             my_text_box.catch_user_events(event)
+            user_input_word = my_text_box.what_user_wrote()
 
-            # if event.type == pygame.MOUSEBUTTONDOWN:
-            #     if input_rect.collidepoint(event.pos):
-            #         active = True
-            #     else:
-            #         active = False
-            #
-            # if event.type == pygame.KEYDOWN:
-            #
-            #     # Check for backspace
-            #     if event.key == pygame.K_BACKSPACE:
-            #         # get text input from 0 to -1 i.e. end.
-            #         user_text = user_text[:-1]
-            #     else:
-            #         user_text += event.unicode
-            #
-            #         if event.key == pygame.K_RETURN:
-            #             print(user_text)
-            #             user_text = ''
-            #             active = False
-            #             color = color_passive
-            #
-        #
-        # if active:
-        #     color = color_active
-        # else:
-        #     color = color_passive
+            if user_input_word == random_word:
+                print("That was right")
+
+            if user_input_word == "":
+                pass
+            else:
+                if not user_input_word == random_word:
+                    print("That was wrong")
+
         my_text_box.draw()
-       # pygame.draw.rect(surface1, color, input_rect)
 
         my_text_box.update()
-        # text_surface = base_font.render(user_text, True, (255, 255, 255))
-        #
-        # surface1.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
-        #
-        # input_rect.w = max(200, text_surface.get_width() + 10)
 
         if main_logo_button2.draw_button_to_screen(surface1):
             pass
@@ -213,7 +202,7 @@ def main_game_loop():
             surface1.fill((255, 255, 255))
             # Gets a random word from the line_list in class method random_image_generator
             random_word = rnd_obj.random_image_generator()
-            print(random_word)
+            # print(random_word)
 
             # Load upp the image who is corresponding to the random word we got above
             random_image = rnd_obj.display_next_image(random_word)

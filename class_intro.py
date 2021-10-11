@@ -7,9 +7,8 @@ class Intro:
     def __init__(self, surface1, black_color):
         pygame.init()
 
-        # Make a surface there i can draw my pictures
-        # surface1 = pygame.display.set_mode((sc_x, sc_y))
-        pygame.display.set_caption("Stavningsleken alpha version 0.3 school project")
+        # Naming the game window.
+        pygame.display.set_caption("Stavningsleken alpha version 0.4 school project")
 
         logo_image = ""
         intro_image = ""
