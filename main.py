@@ -15,6 +15,7 @@ from filehandling_class import MyFileHandling
 from button import Button
 from random_picture_class import RandomPictureGenerator
 from rewritten_textbox_class import RewrittenTextbox
+from score_class import Score
 
 # init pygame
 pygame.init()
@@ -159,6 +160,8 @@ def main_game_loop():
     random_image = rnd_obj.display_next_image(random_word)
     rnd_obj.display_screen(random_image)
 
+    score_obj = Score(surface1)
+
     while game_running:
 
         # Clear what was written in the user_input_word
@@ -174,14 +177,17 @@ def main_game_loop():
             my_text_box.catch_user_events(event)
             user_input_word = my_text_box.what_user_wrote()
 
-            if user_input_word == random_word:
-                print("That was right")
+            score_obj.check_the_user_answer(user_input_word, random_word)
+            #if user_input_word == random_word:
+             #   answer = 1
+              #  print("That was right")
 
-            if user_input_word == "":
-                pass
-            else:
-                if not user_input_word == random_word:
-                    print("That was wrong")
+           # if user_input_word == "":
+            #    pass
+            #else:
+             #   if not user_input_word == random_word:
+              #      answer = 0
+               #     print("That was wrong")
 
         my_text_box.draw()
 

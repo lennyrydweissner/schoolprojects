@@ -34,7 +34,9 @@ class RandomPictureGenerator:
         self.f.close()
 
     def get_computer_randomized_word_from_list(self):
+        self.check_if_list_is_empty()
         self.random_word = random.choice(self.line_list)
+        self.line_list.remove(self.random_word)
         self.random_word = self.random_word.strip()
         return self.random_word
 
@@ -43,3 +45,9 @@ class RandomPictureGenerator:
         self.random_image = pygame.image.load(
             "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png")
         return self.random_image
+
+    def check_if_list_is_empty(self):
+        if len(self.line_list) == 0:
+            print(len(self.line_list))
+            print("Game Over, thanks for playing.")
+            quit()
