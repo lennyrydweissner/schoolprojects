@@ -88,7 +88,7 @@ active = False
 my_text_box = RewrittenTextbox(570, 700, 140, 32, color_passive, color_active, base_font, surface1, active)
 my_text_box.draw()
 control = False
-
+player_score = 0
 game_running = True
 
 
@@ -105,6 +105,7 @@ def the_start_screen():
         if start_the_game_button.draw_button_to_screen(surface1):
             # Start the game then user click on the button
             surface1.fill((255, 255, 255))
+
             main_game_loop()
 
         if end_the_game_button.draw_button_to_screen(surface1):
@@ -128,7 +129,7 @@ def the_start_screen():
 
 
 def main_game_loop():
-    global game_running, event, active
+    global game_running, event, active, test_vab
 
     game_running = True
 
@@ -141,6 +142,17 @@ def main_game_loop():
 
     # Creating an instance off random picture class
     rnd_obj = RandomPictureGenerator(surface1)
+
+    # Creating an score object
+    real_score = 0
+    user_player_score = Score(surface1, player_score)
+    num = None
+    # gets the player score for the first time.
+    real_score = user_player_score.showing_score()
+
+    # Loading up and showing the score from the beginning
+    user_player_score.showing_score()
+    user_player_score.showing_score()
 
     # chosen_random_word = rnd_obj.random_image_generator()
 
@@ -160,7 +172,7 @@ def main_game_loop():
     random_image = rnd_obj.display_next_image(random_word)
     rnd_obj.display_screen(random_image)
 
-    score_obj = Score(surface1)
+    score_obj = Score(surface1, player_score)
 
     while game_running:
 
@@ -178,16 +190,18 @@ def main_game_loop():
             user_input_word = my_text_box.what_user_wrote()
 
             score_obj.check_the_user_answer(user_input_word, random_word)
-            #if user_input_word == random_word:
-             #   answer = 1
-              #  print("That was right")
+            # adam = user_player_score.get_the_score()
+            # print(adam)
+            # if user_input_word == random_word:
+            #   answer = 1
+            #  print("That was right")
 
-           # if user_input_word == "":
-            #    pass
-            #else:
-             #   if not user_input_word == random_word:
-              #      answer = 0
-               #     print("That was wrong")
+        # if user_input_word == "":
+        #    pass
+        # else:
+        #   if not user_input_word == random_word:
+        #      answer = 0
+        #     print("That was wrong")
 
         my_text_box.draw()
 
@@ -207,6 +221,10 @@ def main_game_loop():
 
         if next_random_picture_button.draw_button_to_screen(surface1):
             surface1.fill((255, 255, 255))
+            # user_player_score.adding_score()
+            ivar = score_obj.show_value()
+            score_obj.showing_score()
+
             # Gets a random word from the line_list in class method random_image_generator
             random_word = rnd_obj.get_computer_randomized_word_from_list()
 
@@ -216,7 +234,7 @@ def main_game_loop():
             # Show the image on the screen.
             rnd_obj.display_screen(random_image)
 
-        pygame.display.flip()
+        pygame.display.update()
 
         clock.tick(60)
 

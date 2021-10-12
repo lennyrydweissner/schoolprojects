@@ -7,7 +7,6 @@ class RewrittenTextbox:
     def __init__(self, textbox_pos_x, textbox_pos_y, textbox_width, textbox_height, color_passive, color_active
                  , base_font, surface1, active, user_text=''):
 
-
         self.input_rect = pygame.Rect(textbox_pos_x, textbox_pos_y, textbox_width, textbox_height)
         self.color_passive = color_passive
         self.color_active = color_active
@@ -69,6 +68,3 @@ class RewrittenTextbox:
 
     def draw(self):
         self.input_rect = pygame.draw.rect(self.surface, self.color, self.input_rect)
-
-
-
