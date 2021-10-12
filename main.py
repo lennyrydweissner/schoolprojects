@@ -210,7 +210,7 @@ def main_game_loop():
             ivar = score_obj.show_value()
             score_obj.showing_score()
             my_text_box.reset_mouseclick()
-            
+
             # Gets a random word from the line_list in class method random_image_generator
             random_word = rnd_obj.get_computer_randomized_word_from_list()
 
