@@ -56,7 +56,6 @@ start_the_game_img = pygame.image.load("C:\This is what i use to github stavning
 end_the_game_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Avsluta spelet.png")
 
 # Button instances goes here
-
 stopp_music_button = Button(30, 555, turn_off_music_img)
 turn_on_music_button = Button(30, 620, turn_on_music_img)
 main_meny_button = Button(30, 15, main_meny_img)
@@ -78,8 +77,6 @@ read_my_file = MyFileHandling(path_to_word_file)
 # Testing new stuff here
 base_font = pygame.font.Font(None, 32)
 user_text = ''
-# input_rect = pygame.Rect(570, 700, 140, 32)
-
 color_active = pygame.Color('lightskyblue3')
 color_passive = pygame.Color('chartreuse4')
 color = color_passive
@@ -157,7 +154,7 @@ def main_game_loop():
     # chosen_random_word = rnd_obj.random_image_generator()
 
     # Getting the list of all words
-    collected_list = read_my_file.read_the_file_animal_list()
+    # collected_list = read_my_file.read_the_file_animal_list()
 
     # Getting a random word from the collected_list
     # selected_word = RandomWords(collected_list)
@@ -190,18 +187,6 @@ def main_game_loop():
             user_input_word = my_text_box.what_user_wrote()
 
             score_obj.check_the_user_answer(user_input_word, random_word)
-            # adam = user_player_score.get_the_score()
-            # print(adam)
-            # if user_input_word == random_word:
-            #   answer = 1
-            #  print("That was right")
-
-        # if user_input_word == "":
-        #    pass
-        # else:
-        #   if not user_input_word == random_word:
-        #      answer = 0
-        #     print("That was wrong")
 
         my_text_box.draw()
 
@@ -224,7 +209,8 @@ def main_game_loop():
             # user_player_score.adding_score()
             ivar = score_obj.show_value()
             score_obj.showing_score()
-
+            my_text_box.reset_mouseclick()
+            
             # Gets a random word from the line_list in class method random_image_generator
             random_word = rnd_obj.get_computer_randomized_word_from_list()
 

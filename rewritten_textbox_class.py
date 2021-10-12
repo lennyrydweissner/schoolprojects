@@ -7,6 +7,7 @@ class RewrittenTextbox:
     def __init__(self, textbox_pos_x, textbox_pos_y, textbox_width, textbox_height, color_passive, color_active
                  , base_font, surface1, active, user_text=''):
 
+        pushed_return_key = False
         self.input_rect = pygame.Rect(textbox_pos_x, textbox_pos_y, textbox_width, textbox_height)
         self.color_passive = color_passive
         self.color_active = color_active
@@ -16,16 +17,21 @@ class RewrittenTextbox:
         self.surface = surface1
         self.active = active
         self.written_word = self.user_text
+        self.pushed_return_key = pushed_return_key
 
     def catch_user_events(self, event):
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if self.input_rect.collidepoint(event.pos):
-                self.active = True
-                self.color = pygame.Color("blue")
+            if self.pushed_return_key:
+                pass
             else:
-                self.active = False
-                self.color = pygame.Color("grey")
+
+                if self.input_rect.collidepoint(event.pos):
+                    self.active = True
+                    self.color = pygame.Color("blue")
+                else:
+                    self.active = False
+                    self.color = pygame.Color("grey")
 
         if event.type == pygame.KEYDOWN:
 
@@ -42,6 +48,8 @@ class RewrittenTextbox:
                     self.user_text = ''
                     self.active = False
                     self.color = self.color = pygame.Color("grey")
+                    self.pushed_return_key = True
+
 
     def what_user_wrote(self):
         self.written_word = self.written_word.strip()
@@ -68,3 +76,7 @@ class RewrittenTextbox:
 
     def draw(self):
         self.input_rect = pygame.draw.rect(self.surface, self.color, self.input_rect)
+
+    def reset_mouseclick(self):
+        self.pushed_return_key = False
+        return self.pushed_return_key

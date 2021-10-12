@@ -25,26 +25,24 @@ class Score:
         score_text = None
         your_score_textrect = None
         score_textrect = None
-        score_line = 0
 
         self.display_surface = display_surface
-
         self.pathway_to_good_sp = pathway_to_good_sp
         self.pathway_to_bad_sp = pathway_to_bad_sp
+
         self.load_good = load_good
         self.load_bad = load_bad
+
         self.good_image = good_image
         self.bad_image = bad_image
         self.user_input_word = ""
         self.random_word = ""
-        # self.player_score = 0
+
         self.your_score_text = your_score_text
         self.score_text = score_text
         self.your_score_text_rect = your_score_textrect
         self.score_text_rect = score_textrect
 
-        self.score_file_path = "C:/this is what i use to github stavningsleken/score.txt"
-        self.score_line = score_line
         self.player_score = player_score
         self.value = self.player_score
 
@@ -57,7 +55,6 @@ class Score:
         return self.load_bad
 
     def show_good_answer(self, g_image):
-
         self.good_image = pygame.transform.scale(g_image, (450, 50))
         my_good_image_rect = self.good_image.get_rect()
         my_good_image_rect.center = (1040, 720)
@@ -91,10 +88,6 @@ class Score:
                 self.showing_score()
 
     def showing_score(self):
-        # Load the Scorefile and present it
-        # f = open(self.score_file_path, "r", encoding="utf-8")
-        # self.score_line = f.readline()
-        # f.close()
 
         # 1 Load up the font i want to use
         font = pygame.font.SysFont('cambria', 32)
@@ -118,10 +111,6 @@ class Score:
     def adding_score(self):
         self.player_score = self.player_score + 10
         self.value = self.player_score
-        # Write down the score to an file
-        f = open(self.score_file_path, "w", encoding="utf-8")
-        f.write(str(self.player_score))
-        f.close()
 
     def show_value(self):
         value = self.value

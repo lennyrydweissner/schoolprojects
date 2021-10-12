@@ -8,7 +8,7 @@ class Intro:
         pygame.init()
 
         # Naming the game window.
-        pygame.display.set_caption("Stavningsleken alpha version 0.4 school project")
+        pygame.display.set_caption("Stavningsleken alpha version 0.5 school project")
 
         logo_image = ""
         intro_image = ""
@@ -26,7 +26,6 @@ class Intro:
     def fill_the_screen(self):
         self.surface1.fill(self.black_color)
         self.surface1.blit(self.intro_image, (580, 320))
-
 
     @staticmethod
     def play_music():
