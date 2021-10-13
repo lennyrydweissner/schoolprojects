@@ -7,7 +7,8 @@ class RewrittenTextbox:
     def __init__(self, textbox_pos_x, textbox_pos_y, textbox_width, textbox_height, color_passive, color_active
                  , base_font, surface1, active, user_text=''):
 
-        pushed_return_key = False
+        pushed_return_key = True
+        first_state = 0
         self.input_rect = pygame.Rect(textbox_pos_x, textbox_pos_y, textbox_width, textbox_height)
         self.color_passive = color_passive
         self.color_active = color_active
@@ -18,13 +19,17 @@ class RewrittenTextbox:
         self.active = active
         self.written_word = self.user_text
         self.pushed_return_key = pushed_return_key
+        self.first_state = first_state
 
     def catch_user_events(self, event):
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.pushed_return_key:
-                pass
+                if self.first_state == 0:
+                    self.pushed_return_key = False
             else:
+                self.pushed_return_key = False
+                self.first_state = 1
 
                 if self.input_rect.collidepoint(event.pos):
                     self.active = True
@@ -34,13 +39,15 @@ class RewrittenTextbox:
                     self.color = pygame.Color("grey")
 
         if event.type == pygame.KEYDOWN:
-
-            # Check for backspace
-            if event.key == pygame.K_BACKSPACE:
-
-                self.user_text = self.user_text[:-1]
+            if self.pushed_return_key:
+                pass
             else:
-                self.user_text += event.unicode
+                # Check for backspace
+                if event.key == pygame.K_BACKSPACE:
+
+                    self.user_text = self.user_text[:-1]
+                else:
+                    self.user_text += event.unicode
 
                 if event.key == pygame.K_RETURN:
                     print(self.user_text)
@@ -49,7 +56,6 @@ class RewrittenTextbox:
                     self.active = False
                     self.color = self.color = pygame.Color("grey")
                     self.pushed_return_key = True
-
 
     def what_user_wrote(self):
         self.written_word = self.written_word.strip()
@@ -60,7 +66,6 @@ class RewrittenTextbox:
         return self.written_word
 
     def update(self):
-
         if self.active:
             color = self.color_active
         else:
@@ -79,4 +84,4 @@ class RewrittenTextbox:
 
     def reset_mouseclick(self):
         self.pushed_return_key = False
-        return self.pushed_return_key
+

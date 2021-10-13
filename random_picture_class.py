@@ -13,6 +13,7 @@ class RandomPictureGenerator:
         f = ""  # The file object, used to open the txt file.
         full_path = ""  # Pathway variable, who will hold the path to the pictures
         random_image = ""  # Variable to hold the random image
+        time_to_go = False
 
         self.line_list = line_list
         self.display_surface = display_surface
@@ -20,6 +21,7 @@ class RandomPictureGenerator:
         self.f = f
         self.full_path = full_path
         self.random_image = random_image
+        self.time_to_go = time_to_go
 
     def display_screen(self, image2):
         image2 = pygame.transform.scale(image2, (200, 200))
@@ -47,7 +49,12 @@ class RandomPictureGenerator:
         return self.random_image
 
     def check_if_list_is_empty(self):
-        if len(self.line_list) == 0:
+        if len(self.line_list) == 1:
             print(len(self.line_list))
-            print("Game Over, thanks for playing.")
-            quit()
+            self.time_to_go = True
+
+            # print("Game Over, thanks for playing.")
+            # quit()
+
+    def check_the_list_status(self):
+        return self.time_to_go

@@ -125,13 +125,18 @@ def the_start_screen():
         pygame.display.update()
 
 
+def end_screen():
+    print("Hello the game has ended")
+    quit()
+
+
 def main_game_loop():
     global game_running, event, active, test_vab
 
     game_running = True
 
     # Starts playing the music here.
-    intro_object.play_music()
+    # intro_object.play_music()
 
     # Start the intro scene on screen
     intro_object.load_start_images()
@@ -205,9 +210,16 @@ def main_game_loop():
             game_running = False
 
         if next_random_picture_button.draw_button_to_screen(surface1):
+            # Do a check if the word list is empty
+            print()
+            ivar = rnd_obj.check_the_list_status()
+            rnd_obj.check_if_list_is_empty()
+            if ivar:
+                end_screen()
+
             surface1.fill((255, 255, 255))
+
             # user_player_score.adding_score()
-            ivar = score_obj.show_value()
             score_obj.showing_score()
             my_text_box.reset_mouseclick()
 
