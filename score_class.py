@@ -92,7 +92,7 @@ class Score:
         # 1 Load up the font i want to use
         font = pygame.font.SysFont('cambria', 32)
         # 2 Create 2 text surfaces that i can put on the screen.
-        self.your_score_text = font.render('Your Score: ', True, DARKER_YELLOW, WHITE)
+        self.your_score_text = font.render('Din poäng: ', True, DARKER_YELLOW, WHITE)
         self.score_text = font.render(str(self.player_score), True, DARKER_YELLOW, WHITE)
 
         # 3 Create rects around the text surfaces

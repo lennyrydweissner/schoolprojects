@@ -53,8 +53,5 @@ class RandomPictureGenerator:
             print(len(self.line_list))
             self.time_to_go = True
 
-            # print("Game Over, thanks for playing.")
-            # quit()
-
     def check_the_list_status(self):
         return self.time_to_go

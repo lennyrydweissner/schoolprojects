@@ -131,8 +131,6 @@ def end_screen():
 
 
 def main_game_loop():
-    global game_running, event, active, test_vab
-
     game_running = True
 
     # Starts playing the music here.
@@ -148,7 +146,7 @@ def main_game_loop():
     # Creating an score object
     real_score = 0
     user_player_score = Score(surface1, player_score)
-    num = None
+
     # gets the player score for the first time.
     real_score = user_player_score.showing_score()
 
@@ -211,10 +209,9 @@ def main_game_loop():
 
         if next_random_picture_button.draw_button_to_screen(surface1):
             # Do a check if the word list is empty
-            print()
-            ivar = rnd_obj.check_the_list_status()
+            check_list_index = rnd_obj.check_the_list_status()
             rnd_obj.check_if_list_is_empty()
-            if ivar:
+            if check_list_index:
                 end_screen()
 
             surface1.fill((255, 255, 255))
