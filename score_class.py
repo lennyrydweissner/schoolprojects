@@ -101,7 +101,7 @@ class Score:
 
         # 4 telling where i want this to show up
         self.your_score_text_rect.center = (1000, 450)
-        self.score_text_rect.center = (1000, 480)
+        self.score_text_rect.center = (1000, 500)
 
         # Blit the 2 texts to the screen
         self.display_surface.blit(self.your_score_text, self.your_score_text_rect)

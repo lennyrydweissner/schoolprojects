@@ -16,6 +16,7 @@ from button import Button
 from random_picture_class import RandomPictureGenerator
 from rewritten_textbox_class import RewrittenTextbox
 from score_class import Score
+from end_scene import EndScene
 
 # init pygame
 pygame.init()
@@ -108,6 +109,7 @@ def the_start_screen():
         if end_the_game_button.draw_button_to_screen(surface1):
             # Ends the whole game here
             start_screen_running = False
+            quit()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -126,8 +128,30 @@ def the_start_screen():
 
 
 def end_screen():
-    print("Hello the game has ended")
-    quit()
+    clock = pygame.time.Clock()
+    end_obj = EndScene(surface1)
+    end_running = True
+
+    while end_running:
+
+        # Pygame boiler code
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_a:
+                    the_start_screen()
+
+                if event.key == pygame.K_e:
+                    end_running = False
+                    quit()
+
+        end_obj.show_the_end()
+
+        pygame.display.update()
+
+        clock.tick(60)
 
 
 def main_game_loop():
@@ -145,14 +169,10 @@ def main_game_loop():
 
     # Creating an score object
     real_score = 0
-    user_player_score = Score(surface1, player_score)
+    score_obj = Score(surface1, player_score)
 
     # gets the player score for the first time.
-    real_score = user_player_score.showing_score()
-
-    # Loading up and showing the score from the beginning
-    user_player_score.showing_score()
-    user_player_score.showing_score()
+    real_score = score_obj.showing_score()
 
     # chosen_random_word = rnd_obj.random_image_generator()
 
@@ -171,8 +191,6 @@ def main_game_loop():
     random_word = rnd_obj.get_computer_randomized_word_from_list()
     random_image = rnd_obj.display_next_image(random_word)
     rnd_obj.display_screen(random_image)
-
-    score_obj = Score(surface1, player_score)
 
     while game_running:
 
