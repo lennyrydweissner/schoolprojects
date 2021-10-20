@@ -84,4 +84,3 @@ class RewrittenTextbox:
 
     def reset_mouseclick(self):
         self.pushed_return_key = False
-
