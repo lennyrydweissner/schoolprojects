@@ -13,11 +13,25 @@ class Intro:
         logo_image = ""
         intro_image = ""
         pygame.mixer.music.load("bensound-sunny.mp3")
+        applauds = pygame.mixer.Sound("C:/this is what i use to github stavningsleken/Sounds/"
+                                      "CRWDApls_Applause 1 (ID 2363)_BSB.wav")
+
+        operation_sound = pygame.mixer.Sound("C:/this is what i use to github stavningsleken/Sounds/"
+                                             "TOYElec_Operation game 4 (ID 1685)_BSB.wav")
+
+        type_writer_sound = pygame.mixer.Sound("C:/this is what i use to github stavningsleken/Sounds/"
+                                               "COMType_Typewriter (ID 1065)_BSB.wav")
+
+        laugh_sound = pygame.mixer.Sound("C:/this is what i use to github stavningsleken/Sounds/"
+                                         "VOXLaff_Laugh (ID 0475)_BSB.wav")
 
         self.surface1 = surface1
         self.black_color = black_color
         self.intro_image = intro_image
         self.logo_image = logo_image
+        self.applauds = applauds
+        self.operation_sound = operation_sound
+        self.type_writer_sound = type_writer_sound
 
     def load_start_images(self):
         # Load the start image to the screen.
@@ -26,6 +40,18 @@ class Intro:
     def fill_the_screen(self):
         self.surface1.fill(self.black_color)
         self.surface1.blit(self.intro_image, (580, 320))
+
+    def applauds_sound(self):
+        pygame.mixer.Sound.play(self.applauds)
+
+    def wrong_answer_sound(self):
+        pygame.mixer.Sound.play(self.operation_sound)
+
+    def sound_of_typewriter(self):
+        pygame.mixer.Sound.play(self.type_writer_sound)
+
+    def stop_sound_of_typewriter(self):
+        pygame.mixer.Sound.stop(self.type_writer_sound)
 
     @staticmethod
     def play_music():

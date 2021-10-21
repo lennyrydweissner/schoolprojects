@@ -30,6 +30,7 @@ class Score:
         how_it_spells_text_rect = None
         random_word_vab = None
         random_word_text_rect = None
+        right_wrong_answer_sound = 0
 
         self.random_word_vab = random_word_vab
         self.random_word_text_rect = random_word_text_rect
@@ -55,6 +56,7 @@ class Score:
         self.how_it_spells_vab = how_it_spells_vab
         self.how_it_spells_text_rect = how_it_spells_text_rect
         self.info_text_how_it_spells = info_text_how_it_spells
+        self.right_wrong_answer_sound = right_wrong_answer_sound
 
     def load_good_answer_image(self):
         self.good_image = pygame.image.load(self.pathway_to_good_sp)
@@ -89,6 +91,8 @@ class Score:
             self.showing_score()
             self.value = self.player_score
             print(self.value)
+            self.right_wrong_answer_sound = 1
+
         if self.user_input_word == "":
             pass
         else:
@@ -97,6 +101,7 @@ class Score:
                 lbi = self.load_bad_answer_image()
                 self.show_bad_answer(lbi)
                 self.showing_score()
+                self.right_wrong_answer_sound = 2
 
     def showing_score(self):
 
@@ -147,3 +152,8 @@ class Score:
         self.random_word_text_rect.center = (680, 660)
         self.display_surface.blit(self.random_word_vab, self.random_word_text_rect)
         pygame.display.flip()
+
+    def check_sound_state(self):
+        if self.user_input_word == "":
+            self.right_wrong_answer_sound = 0
+        return self.right_wrong_answer_sound

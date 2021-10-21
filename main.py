@@ -157,8 +157,6 @@ def end_screen():
 def main_game_loop():
     game_running = True
 
-
-
     # Starts playing the music here.
     # intro_object.play_music()
 
@@ -193,12 +191,15 @@ def main_game_loop():
     random_word = rnd_obj.get_computer_randomized_word_from_list()
     random_image = rnd_obj.display_next_image(random_word)
     rnd_obj.display_screen(random_image)
+    soundcheck = None
+    typewriter_sound = None
 
     while game_running:
 
         # Clear what was written in the user_input_word
         # every time the loop turns around
         user_input_word = my_text_box.clear_written_word()
+        soundcheck = None
 
         # Pygame boiler code
         for event in pygame.event.get():
@@ -210,6 +211,22 @@ def main_game_loop():
             user_input_word = my_text_box.what_user_wrote()
 
             score_obj.check_the_user_answer(user_input_word, random_word)
+            soundcheck = score_obj.check_sound_state()
+            # typewriter_sound = my_text_box.check_type_sound()
+
+            if soundcheck == 1:
+                intro_object.applauds_sound()
+                soundcheck = 0
+
+            if soundcheck == 2:
+                intro_object.wrong_answer_sound()
+                soundcheck = 0
+
+                # if typewriter_sound == 1:
+                intro_object.sound_of_typewriter()
+
+                # if typewriter_sound == 0:
+                intro_object.stop_sound_of_typewriter()
 
         my_text_box.draw()
 
