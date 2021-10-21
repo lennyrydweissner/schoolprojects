@@ -157,6 +157,8 @@ def end_screen():
 def main_game_loop():
     game_running = True
 
+
+
     # Starts playing the music here.
     # intro_object.play_music()
 

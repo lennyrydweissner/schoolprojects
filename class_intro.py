@@ -8,7 +8,7 @@ class Intro:
         pygame.init()
 
         # Naming the game window.
-        pygame.display.set_caption("Stavningsleken alpha version 0.5 school project")
+        pygame.display.set_caption("STAVNINGSLEKEN MY FIRST SCHOOL PROJECT.")
 
         logo_image = ""
         intro_image = ""

@@ -25,7 +25,14 @@ class Score:
         score_text = None
         your_score_textrect = None
         score_textrect = None
+        info_text_how_it_spells = "SÅ HÄR STAVAS ORDET: "
+        how_it_spells_vab = None
+        how_it_spells_text_rect = None
+        random_word_vab = None
+        random_word_text_rect = None
 
+        self.random_word_vab = random_word_vab
+        self.random_word_text_rect = random_word_text_rect
         self.display_surface = display_surface
         self.pathway_to_good_sp = pathway_to_good_sp
         self.pathway_to_bad_sp = pathway_to_bad_sp
@@ -45,6 +52,9 @@ class Score:
 
         self.player_score = player_score
         self.value = self.player_score
+        self.how_it_spells_vab = how_it_spells_vab
+        self.how_it_spells_text_rect = how_it_spells_text_rect
+        self.info_text_how_it_spells = info_text_how_it_spells
 
     def load_good_answer_image(self):
         self.good_image = pygame.image.load(self.pathway_to_good_sp)
@@ -65,6 +75,7 @@ class Score:
         my_bad_image_rect = self.bad_image.get_rect()
         my_bad_image_rect.center = (1040, 720)
         self.display_surface.blit(self.bad_image, my_bad_image_rect)
+        self.show_user_how_it_spells(self.random_word)
 
     def check_the_user_answer(self, user_input_word, random_word):
         self.user_input_word = user_input_word
@@ -115,3 +126,24 @@ class Score:
     def show_value(self):
         value = self.value
         return value
+
+    def show_user_how_it_spells(self, random_word):
+        font = pygame.font.SysFont('cambria', 18)
+        font2 = pygame.font.SysFont('cambria', 18)
+        self.random_word = random_word
+
+        # Makes the word in upper letters cause Felicia my daughter cant read small letters yet.
+        # if i want to release this game to a broader public erase this line of code below.
+        self.random_word = self.random_word.upper()
+
+        self.how_it_spells_vab = font.render(self.info_text_how_it_spells, True, DARKER_YELLOW, WHITE)
+        self.how_it_spells_text_rect = self.how_it_spells_vab.get_rect()
+        self.how_it_spells_text_rect.center = (680, 630)
+        self.display_surface.blit(self.how_it_spells_vab, self.how_it_spells_text_rect)
+
+        # And now we display the actual word how its supposed to be spelled.
+        self.random_word_vab = font.render(self.random_word, True, DARKER_YELLOW, WHITE)
+        self.random_word_text_rect = self.random_word_vab.get_rect()
+        self.random_word_text_rect.center = (680, 660)
+        self.display_surface.blit(self.random_word_vab, self.random_word_text_rect)
+        pygame.display.flip()
