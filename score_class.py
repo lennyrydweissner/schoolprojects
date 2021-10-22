@@ -90,6 +90,7 @@ class Score:
             self.adding_score()
             self.showing_score()
             self.value = self.player_score
+            # Todo make a unittest on the print so we now if the score works. No 2
             print(self.value)
             self.right_wrong_answer_sound = 1
 
@@ -101,6 +102,8 @@ class Score:
                 lbi = self.load_bad_answer_image()
                 self.show_bad_answer(lbi)
                 self.showing_score()
+                # Todo make an unittest on the wrong sound variable as no 3
+                # so we know that the wrong sound is going to play
                 self.right_wrong_answer_sound = 2
 
     def showing_score(self):

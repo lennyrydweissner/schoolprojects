@@ -32,11 +32,13 @@ class RandomPictureGenerator:
 
     def load_list_to_pick_random_word_from(self):
         self.f = open("C:/This is what i use to github stavningsleken/bildfilen.txt", "r", encoding="utf-8")
+        # Todo do a unittest on this list so we now it has been populated. No 4
         self.line_list = self.f.readlines()
         self.f.close()
 
     def get_computer_randomized_word_from_list(self):
         self.check_if_list_is_empty()
+        # Todo a unittest on this so we know we got a random word, as even the image is depending on it. No 5
         self.random_word = random.choice(self.line_list)
         self.line_list.remove(self.random_word)
         self.random_word = self.random_word.strip()

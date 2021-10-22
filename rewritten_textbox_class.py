@@ -1,5 +1,4 @@
 import pygame
-from pygame import locals
 
 
 class RewrittenTextbox:
@@ -9,7 +8,7 @@ class RewrittenTextbox:
 
         pushed_return_key = True
         first_state = 0
-        type = 0
+        color_type = 0
         self.input_rect = pygame.Rect(textbox_pos_x, textbox_pos_y, textbox_width, textbox_height)
         self.color_passive = color_passive
         self.color_active = color_active
@@ -21,7 +20,7 @@ class RewrittenTextbox:
         self.written_word = self.user_text
         self.pushed_return_key = pushed_return_key
         self.first_state = first_state
-        self.type = type
+        self.type = color_type
 
     def catch_user_events(self, event):
 
@@ -51,15 +50,23 @@ class RewrittenTextbox:
 
                     self.user_text = self.user_text[:-1]
                 else:
-                    self.user_text += event.unicode
+                    if not self.active:
+                        pass
+                    else:
+                        self.user_text += event.unicode
 
                 if event.key == pygame.K_RETURN:
-                    print(self.user_text)
-                    self.written_word = self.user_text
-                    self.user_text = ''
-                    self.active = False
-                    self.color = self.color = pygame.Color("grey")
-                    self.pushed_return_key = True
+                    if not self.active:
+                        pass
+                    else:
+                        # Todo include this print to unittest as no 1
+                        # to be able to se that it works to hit enter after writing the word.
+                        print(self.user_text)
+                        self.written_word = self.user_text
+                        self.user_text = ''
+                        self.active = False
+                        self.color = self.color = pygame.Color("grey")
+                        self.pushed_return_key = True
 
     def what_user_wrote(self):
         self.written_word = self.written_word.strip()
