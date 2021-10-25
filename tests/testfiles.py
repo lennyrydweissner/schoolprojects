@@ -97,7 +97,7 @@ class MyTestCase(unittest.TestCase):
 
         if not self.random_word == "":
             self.status = True
-            print(self.random_word)
+            # print(self.random_word)
         else:
             self.status = False
 
