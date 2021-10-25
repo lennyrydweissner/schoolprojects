@@ -125,6 +125,7 @@ def the_start_screen():
             # mouse_cords_tracker.write_out_cords()
 
         pygame.display.update()
+    return start_screen_running
 
 
 def end_screen():
@@ -223,10 +224,10 @@ def main_game_loop():
                 soundcheck = 0
 
                 # if typewriter_sound == 1:
-                intro_object.sound_of_typewriter()
+                # intro_object.sound_of_typewriter()
 
                 # if typewriter_sound == 0:
-                intro_object.stop_sound_of_typewriter()
+                # intro_object.stop_sound_of_typewriter()
 
         my_text_box.draw()
 

@@ -9,6 +9,7 @@ class RewrittenTextbox:
         pushed_return_key = True
         first_state = 0
         color_type = 0
+        pressed_key = None
         self.input_rect = pygame.Rect(textbox_pos_x, textbox_pos_y, textbox_width, textbox_height)
         self.color_passive = color_passive
         self.color_active = color_active
@@ -21,6 +22,7 @@ class RewrittenTextbox:
         self.pushed_return_key = pushed_return_key
         self.first_state = first_state
         self.type = color_type
+        self.pressed_key = pressed_key
 
     def catch_user_events(self, event):
 
@@ -59,8 +61,6 @@ class RewrittenTextbox:
                     if not self.active:
                         pass
                     else:
-                        # Todo include this print to unittest as no 1
-                        # to be able to se that it works to hit enter after writing the word.
                         print(self.user_text)
                         self.written_word = self.user_text
                         self.user_text = ''

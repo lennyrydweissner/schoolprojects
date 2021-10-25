@@ -14,6 +14,7 @@ class RandomPictureGenerator:
         full_path = ""  # Pathway variable, who will hold the path to the pictures
         random_image = ""  # Variable to hold the random image
         time_to_go = False
+        check = False
 
         self.line_list = line_list
         self.display_surface = display_surface
@@ -22,6 +23,7 @@ class RandomPictureGenerator:
         self.full_path = full_path
         self.random_image = random_image
         self.time_to_go = time_to_go
+        self.check = check
 
     def display_screen(self, image2):
         image2 = pygame.transform.scale(image2, (200, 200))
@@ -32,13 +34,12 @@ class RandomPictureGenerator:
 
     def load_list_to_pick_random_word_from(self):
         self.f = open("C:/This is what i use to github stavningsleken/bildfilen.txt", "r", encoding="utf-8")
-        # Todo do a unittest on this list so we now it has been populated. No 4
         self.line_list = self.f.readlines()
         self.f.close()
+        return self.line_list
 
     def get_computer_randomized_word_from_list(self):
         self.check_if_list_is_empty()
-        # Todo a unittest on this so we know we got a random word, as even the image is depending on it. No 5
         self.random_word = random.choice(self.line_list)
         self.line_list.remove(self.random_word)
         self.random_word = self.random_word.strip()
