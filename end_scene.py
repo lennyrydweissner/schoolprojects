@@ -12,6 +12,7 @@ PINK = (243, 132, 245)
 NAVY_MARIN_BLUE = (102, 233, 242)
 GREEN2 = (10, 105, 14)
 
+
 class EndScene:
     # Constructor goes here.
     def __init__(self, display_surface):
