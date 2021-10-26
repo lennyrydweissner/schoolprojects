@@ -119,7 +119,13 @@ class MyTestCase(unittest.TestCase):
         self.random_word = self.rnd_test_obj.get_computer_randomized_word_from_list()
         self.random_picture_value = self.rnd_test_obj.display_next_image(self.random_word)
 
-        self.assertEqual(1, self.random_picture_value)
+        if not self.random_picture_value == "":
+            self.status = True
+            
+        else:
+            self.status = False
+
+        self.assertEqual(True, self.status)
 
     def testing_to_add_score_from_score_class(self):
         surface1 = dry_function()

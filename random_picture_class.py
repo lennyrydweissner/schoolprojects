@@ -66,7 +66,7 @@ class RandomPictureGenerator:
             print(self.working)
             print("Cant load the image file. ", message)
 
-        return self.working  # self.random_image
+        return self.random_image
 
     def check_if_list_is_empty(self):
         if len(self.line_list) == 1:
