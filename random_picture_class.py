@@ -1,5 +1,6 @@
 import random
 import pygame
+import os
 from pygame.locals import *
 
 
@@ -15,7 +16,7 @@ class RandomPictureGenerator:
         random_image = ""  # Variable to hold the random image
         time_to_go = False
         check = False
-
+        working = 0
         self.line_list = line_list
         self.display_surface = display_surface
         self.random_word = random_word
@@ -24,6 +25,7 @@ class RandomPictureGenerator:
         self.random_image = random_image
         self.time_to_go = time_to_go
         self.check = check
+        self.working = working
 
     def display_screen(self, image2):
         image2 = pygame.transform.scale(image2, (200, 200))
@@ -33,9 +35,16 @@ class RandomPictureGenerator:
         self.display_surface.blit(image2, my_rect)
 
     def load_list_to_pick_random_word_from(self):
-        self.f = open("C:/This is what i use to github stavningsleken/bildfilen.txt", "r", encoding="utf-8")
-        self.line_list = self.f.readlines()
-        self.f.close()
+        try:
+            self.f = open("C:/This is what i use to github stavningsleken/bildfilen.txt", "r", encoding="utf-8")
+        except FileNotFoundError as e:
+            print(f'There was an error while loading the file. {e}')
+        try:
+            self.line_list = self.f.readlines()
+        except BaseException as e:
+            print(f'Something went wrong then trying to populate the list. {e}')
+        finally:
+            self.f.close()
         return self.line_list
 
     def get_computer_randomized_word_from_list(self):
@@ -46,10 +55,18 @@ class RandomPictureGenerator:
         return self.random_word
 
     def display_next_image(self, random_word):
-        self.full_path = "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png"
-        self.random_image = pygame.image.load(
+        try:
+            self.full_path = "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png"
+            self.random_image = pygame.image.load(
             "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png")
-        return self.random_image
+            self.working = 1
+
+        except pygame.error as message:
+            self.working = 0
+            print(self.working)
+            print("Cant load the image file. ", message)
+
+        return self.working  # self.random_image
 
     def check_if_list_is_empty(self):
         if len(self.line_list) == 1:

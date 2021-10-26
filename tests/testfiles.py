@@ -33,7 +33,7 @@ class MyTestCase(unittest.TestCase):
         self.check_status = check_status
         self.i1_obj = Intro(surface1, black_color)
         self.check_status = self.i1_obj.stop_music()
-        self.assertEqual(0, self.check_status)
+        self.assertEqual(1, self.check_status)
 
     def testing_if_applauds_sounds_working(self):
         surface1 = dry_function()
@@ -106,25 +106,20 @@ class MyTestCase(unittest.TestCase):
     def testing_check_so_it_load_next_random_image(self):
         surface1 = dry_function()
         random_word = ""
-        random_picture_path = ""
+        random_picture_value = 0
         status = False
 
         self.random_word = random_word
-        self.random_picture_path = random_picture_path
+        self.random_picture_value = random_picture_value
         self.status = status
 
         self.rnd_test_obj = RandomPictureGenerator(surface1)
         self.rnd_test_obj.load_list_to_pick_random_word_from()
 
         self.random_word = self.rnd_test_obj.get_computer_randomized_word_from_list()
-        self.random_picture_path = self.rnd_test_obj.display_next_image(self.random_word)
+        self.random_picture_value = self.rnd_test_obj.display_next_image(self.random_word)
 
-        if not self.random_picture_path == "":
-            self.status = True
-        else:
-            self.status = False
-
-            self.assertEqual(True, True)
+        self.assertEqual(1, self.random_picture_value)
 
     def testing_to_add_score_from_score_class(self):
         surface1 = dry_function()
