@@ -121,7 +121,7 @@ class MyTestCase(unittest.TestCase):
 
         if not self.random_picture_value == "":
             self.status = True
-            
+
         else:
             self.status = False
 
