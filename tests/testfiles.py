@@ -1,5 +1,6 @@
 import unittest
 import pygame
+
 from class_intro import Intro
 from random_picture_class import RandomPictureGenerator
 from score_class import Score
@@ -106,26 +107,51 @@ class MyTestCase(unittest.TestCase):
     def testing_check_so_it_load_next_random_image(self):
         surface1 = dry_function()
         random_word = ""
-        random_picture_value = 0
+        random_picture_value_string = ""
         status = False
+        working = 0
 
         self.random_word = random_word
-        self.random_picture_value = random_picture_value
+        self.random_picture_value_string = random_picture_value_string
         self.status = status
 
+        self.working = working
         self.rnd_test_obj = RandomPictureGenerator(surface1)
         self.rnd_test_obj.load_list_to_pick_random_word_from()
 
         self.random_word = self.rnd_test_obj.get_computer_randomized_word_from_list()
-        self.random_picture_value = self.rnd_test_obj.display_next_image(self.random_word)
+        self.random_picture_value_string = self.rnd_test_obj.display_next_image(self.random_word)
 
-        if not self.random_picture_value == "":
+        if not self.random_picture_value_string == "":
             self.status = True
-
         else:
             self.status = False
 
         self.assertEqual(True, self.status)
+
+    def testing_check_so_it_load_next_random_image_no2(self):
+        surface1 = dry_function()
+
+        # Force the random word to be katt
+        # So the random_picture_class.display_next_image(random_word)
+        # Loads the katt image.
+        random_word = "katt"
+        status = False
+        cat_picture = ""
+
+        self.status = status
+        self.random_word = random_word
+        self.cat_picture = cat_picture
+        self.rnd_test_obj = RandomPictureGenerator(surface1)
+
+        self.cat_picture = self.rnd_test_obj.display_next_image(self.random_word)
+
+        if not self.cat_picture == "":
+            self.status = True
+        else:
+            self.status = False
+
+        self.assertTrue(True, self.status)
 
     def testing_to_add_score_from_score_class(self):
         surface1 = dry_function()
@@ -139,7 +165,7 @@ class MyTestCase(unittest.TestCase):
         self.fetched_score = self.test_score_obj.adding_score()
         self.assertNotEqual(self.player_score, self.fetched_score)
 
-    def testing_to_show_value_class(self):
+    def testing_to_show_score_value_from_score_class(self):
         surface1 = dry_function()
         value = 0
         player_score = 0
@@ -153,6 +179,17 @@ class MyTestCase(unittest.TestCase):
         self.test_score_obj.adding_score()
         self.fetched_value = self.test_score_obj.show_value()
         self.assertNotEqual(0, self.fetched_value)
+
+    def testing_list_status_from_random_picture_class(self):
+        surface1 = dry_function()
+        check_list_status = True
+        status = True
+        self.status = status
+        self.check_list_status = check_list_status
+        self.rnd_test_obj = RandomPictureGenerator(surface1)
+        self.check_list_status = self.rnd_test_obj.check_the_list_status()
+
+        self.assertNotEqual(True, self.check_list_status)
 
 
 if __name__ == '__main__':

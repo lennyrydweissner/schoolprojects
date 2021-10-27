@@ -58,13 +58,13 @@ class RandomPictureGenerator:
         try:
             self.full_path = "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png"
             self.random_image = pygame.image.load(
-            "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png")
+                "C:/This is what i use to github stavningsleken/bilder/" + random_word + ".png")
             self.working = 1
 
         except pygame.error as message:
             self.working = 0
             print(self.working)
-            print("Cant load the image file. ", message)
+            print(f'Cant load the image file. {message} ')
 
         return self.random_image
 
