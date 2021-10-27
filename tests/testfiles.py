@@ -129,7 +129,7 @@ class MyTestCase(unittest.TestCase):
 
     def testing_to_add_score_from_score_class(self):
         surface1 = dry_function()
-        player_score = 100
+        player_score = 0
         fetched_score = 0
 
         self.player_score = player_score
