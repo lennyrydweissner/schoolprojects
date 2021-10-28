@@ -23,27 +23,18 @@ class HighScoreClass(EndScene):
         sorted_list = []
         hp0, hp1, hp2, hp3, hp4 = "", "", "", "", ""
         hn0, hn1, hn2, hn3, hn4 = "", "", "", "", ""
-        text_one = "HÖGSTA POÄNG LISTAN"
-        text_two = ""
-        text_three = ""
-        text_four = ""
-        text_five = ""
-        text_six = ""
-        text_one_textrect = None
-        text_two_textrect = None
-
+        t1 = pygame.image.load("C:/This is what i use to github stavningsleken/meny bilder/highscore2.png")
+        t2 = "TRYCK (G) FÖR ATT GÅ TILLBAKA."
+        # t1 = "HÖGSTA POÄNG LISTAN"
+        self.t1 = t1
+        self.t2 = t2
         # Self outputs here
-        self.text_one_output = text_one
-        self.text_two_output = text_two
-
-        # Self rects here
-        self.text_one_rect = text_one_textrect
-        self.text_two_rect = text_two_textrect
+        self.t1_output = t1
 
         # Self fonts i want to use goes here
         self.high_score_font = high_score_font
 
-        self.surface1 = display_surface
+        self.surface = display_surface
         self.user_score_to_save_to_the_high_score_list = read_score
         self.user_name_to_save = ""
         self.file = f
@@ -54,6 +45,7 @@ class HighScoreClass(EndScene):
         self.temp_name = temp_name
         self.temp_points = temp_points
         self.sorted_list = sorted_list
+
         self.hp0 = hp0
         self.hp1 = hp1
         self.hp2 = hp2
@@ -80,11 +72,11 @@ class HighScoreClass(EndScene):
         self.the_line = self.file.readlines()
 
         for items in self.the_line:
-            if self.counter <= 4:
-                self.cleaning_from_whitespaces = items.strip()
-                self.score_list.append(self.cleaning_from_whitespaces)
-                self.counter += 1
-        self.counter = 0
+            # if self.counter <= 4:
+            self.cleaning_from_whitespaces = items.strip()
+            self.score_list.append(self.cleaning_from_whitespaces)
+            self.counter += 1
+        # self.counter = 0
 
         # Sort the items we got after the highest value.
         self.score_list = sorted(self.score_list, key=lambda x: int(x.split(',')[0]))
@@ -108,25 +100,35 @@ class HighScoreClass(EndScene):
                 self.hp4, self.hn4 = items.split(',')
             self.counter += 1
 
-        # Putting the score out on the screen
-        # Here we present the High score text on screen
-        self.text_one = self.high_score_font.render(self.text_one_output, True, end_scene.PURPLE, end_scene.WHITE)
-        self.text_one_rect = self.text_one.get_rect()
-        self.text_one_rect.center = (710, 50)
-        self.display_surface.blit(self.text_one, self.text_one_rect)
+        # Here we put the Highest score text in middle of screen
+        self.surface.blit(self.t1, (300, 25))
+        # self.blitz(self.t1_output, 700, 50)
 
-        # Here we present the highest score user.
-        self.text_two = self.high_score_font.render(self.hn0, True, end_scene.PURPLE, end_scene.WHITE)
-        self.text_three = self.high_score_font.render(self.hp0, True, end_scene.PURPLE, end_scene.WHITE)
+        # Here no.1 score user.
+        self.blitz(self.hn0, 550, 150)
+        self.blitz(self.hp0, 720, 150)
 
-        self.text_two_rect = self.text_two.get_rect()
-        self.text_three_rect = self.text_three.get_rect()
+        # Here no.2 score user
+        self.blitz(self.hn1, 550, 200)
+        self.blitz(self.hp1, 720, 200)
 
-        self.text_two_rect.center = (710, 150)
-        self.text_three_rect.center = (820, 150)
+        # Here no.3 score user
+        self.blitz(self.hn2, 550, 250)
+        self.blitz(self.hp2, 720, 250)
 
-        self.display_surface.blit(self.text_two, self.text_two_rect)
-        self.display_surface.blit(self.text_three, self.text_three_rect)
+        # Here no.4 score user
+        self.blitz(self.hn3, 550, 300)
+        self.blitz(self.hp3, 720, 300)
 
-        # Here comes the second highest score user
-        
+        # Here no.5 score user
+        self.blitz(self.hn4, 550, 350)
+        self.blitz(self.hp4, 720, 350)
+
+        # Go back alternative goes here
+        self.blitz(self.t2, 650, 550)
+
+    def blitz(self, output_text, text_pos_x, text_pos_y):
+        text_font_rend = self.high_score_font.render(output_text, True, end_scene.PURPLE, end_scene.WHITE)
+        text_rect = text_font_rend.get_rect()
+        text_rect.center = (text_pos_x, text_pos_y)
+        self.display_surface.blit(text_font_rend, text_rect)

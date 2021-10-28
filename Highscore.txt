@@ -1,4 +1,4 @@
-30,Lenny
+500,Lenny
 70,Felicia
 90,Emilia
 40,Karolina
@@ -15,3 +15,4 @@
 10,Gunnar
 10,larry
 10,gustaf
+200,Loa

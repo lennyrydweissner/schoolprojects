@@ -350,6 +350,7 @@ def high_score_screen():
     saved_score = True
     hgh2_obj.sort_high_score_list()
     hgh2_obj.show_high_score_on_screen()
+
     high_score_screen_running = True
 
     while high_score_screen_running:
@@ -357,6 +358,10 @@ def high_score_screen():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_g:
+                    very_last_sceen()
 
         pygame.display.update()
 
