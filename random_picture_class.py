@@ -17,6 +17,7 @@ class RandomPictureGenerator:
         time_to_go = False
         check = False
         working = 0
+
         self.line_list = line_list
         self.display_surface = display_surface
         self.random_word = random_word

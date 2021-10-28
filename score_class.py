@@ -10,6 +10,7 @@ YELLOW = (186, 184, 43)
 DARKER_YELLOW = (153, 153, 0)
 PINK = (243, 132, 245)
 NAVY_MARIN_BLUE = (102, 233, 242)
+PURPLE = (107, 50, 168)
 
 
 class Score:
@@ -24,6 +25,7 @@ class Score:
         your_score_text = None
         score_text = None
         your_score_textrect = None
+        your_name_rect = None
         score_textrect = None
         info_text_how_it_spells = "SÅ HÄR STAVAS ORDET: "
         how_it_spells_vab = None
@@ -31,25 +33,33 @@ class Score:
         random_word_vab = None
         random_word_text_rect = None
         right_wrong_answer_sound = 0
+        your_name_text = ""
+        file = ""
+        working = 0
 
         self.random_word_vab = random_word_vab
         self.random_word_text_rect = random_word_text_rect
         self.display_surface = display_surface
         self.pathway_to_good_sp = pathway_to_good_sp
         self.pathway_to_bad_sp = pathway_to_bad_sp
-
+        self.file = file
+        self.working = working
         self.load_good = load_good
         self.load_bad = load_bad
-
+        self.line_text = ""
         self.good_image = good_image
         self.bad_image = bad_image
         self.user_input_word = ""
         self.random_word = ""
-
+        self.file_score = ""
         self.your_score_text = your_score_text
         self.score_text = score_text
         self.your_score_text_rect = your_score_textrect
         self.score_text_rect = score_textrect
+        self.score_list = []
+        self.clean_container = ""
+        self.your_name_text = your_name_text
+        self.your_name_rect = your_name_rect
 
         self.player_score = player_score
         self.value = self.player_score
@@ -158,3 +168,60 @@ class Score:
         if self.user_input_word == "":
             self.right_wrong_answer_sound = 0
         return self.right_wrong_answer_sound
+
+    def showing_score_save_sceen(self, filescore):
+        self.file_score = filescore
+        save_sceen_font = pygame.font.SysFont('cambria', 32)
+        write_your_name_font = pygame.font.SysFont('cambria', 24)
+
+        # 2 Create 2 text surfaces that i can put on the screen.
+        self.your_score_text = save_sceen_font.render('Du hade så här många poäng: ', True, PURPLE, WHITE)
+        self.score_text = save_sceen_font.render(str(self.file_score), True, PURPLE, WHITE)
+        self.your_name_text = write_your_name_font.render("SKRIV DITT NAMN: ", True, PURPLE, WHITE)
+
+        # 3 Create rects around the text surfaces
+        self.your_score_text_rect = self.your_score_text.get_rect()
+        self.score_text_rect = self.score_text.get_rect()
+        self.your_name_rect = self.your_name_text.get_rect()
+
+        # 4 telling where i want this to show up
+        self.your_score_text_rect.center = (700, 150)
+        self.score_text_rect.center = (940, 150)
+        self.your_name_rect.center = (700, 50)
+
+        # Blit the 2 texts to the screen
+        self.display_surface.blit(self.your_score_text, self.your_score_text_rect)
+        self.display_surface.blit(self.score_text, self.score_text_rect)
+        self.display_surface.blit(self.your_name_text, self.your_name_rect)
+
+        pygame.display.flip()
+
+    def save_the_score_before_we_go_to_end_sceen(self, the_score_user_have):
+        try:
+            self.file = open("the_score.txt", 'w', encoding="utf-8")
+            self.file.write(str(the_score_user_have))
+            # self.file.write("\n")
+            self.working = 1
+        except BaseException as e:
+            self.working = 0
+            print(f"Something went wrong then i tried to save the score. {e} ")
+        finally:
+            self.file.close()
+        return self.working
+
+    def load_file_score(self):
+        try:
+            self.file = open("the_score.txt", "r", encoding="utf-8")
+            self.line_text = self.file.readlines()
+
+            for items in self.line_text:
+                self.clean_container = items.strip()
+                self.score_list.append(self.clean_container)
+
+            self.working = 1
+        except BaseException as e:
+            self.working = 0
+            print(f"Something went wrong then trying to read the score file. {e}")
+        finally:
+            self.file.close()
+        return self.clean_container

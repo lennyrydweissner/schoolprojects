@@ -17,6 +17,7 @@ from random_picture_class import RandomPictureGenerator
 from rewritten_textbox_class import RewrittenTextbox
 from score_class import Score
 from end_scene import EndScene
+from highscore_class import HighScoreClass
 
 # init pygame
 pygame.init()
@@ -132,6 +133,7 @@ def end_screen():
     clock = pygame.time.Clock()
     end_obj = EndScene(surface1)
     end_running = True
+    saved_score = False
 
     while end_running:
 
@@ -141,14 +143,20 @@ def end_screen():
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_f:
                     the_start_screen()
 
-                if event.key == pygame.K_e:
+                if event.key == pygame.K_s:
+                    save_sceen()
+
+                if event.key == pygame.K_v:
+                    high_score_screen()
+
+                if event.key == pygame.K_a:
                     end_running = False
                     quit()
 
-        end_obj.show_the_end()
+        end_obj.show_the_end(saved_score)
 
         pygame.display.update()
 
@@ -174,14 +182,6 @@ def main_game_loop():
 
     # gets the player score for the first time.
     real_score = score_obj.showing_score()
-
-    # chosen_random_word = rnd_obj.random_image_generator()
-
-    # Getting the list of all words
-    # collected_list = read_my_file.read_the_file_animal_list()
-
-    # Getting a random word from the collected_list
-    # selected_word = RandomWords(collected_list)
 
     # Setting up the clock who controls the fps
     clock = pygame.time.Clock()
@@ -223,12 +223,6 @@ def main_game_loop():
                 intro_object.wrong_answer_sound()
                 soundcheck = 0
 
-                # if typewriter_sound == 1:
-                # intro_object.sound_of_typewriter()
-
-                # if typewriter_sound == 0:
-                # intro_object.stop_sound_of_typewriter()
-
         my_text_box.draw()
 
         my_text_box.update()
@@ -250,6 +244,8 @@ def main_game_loop():
             check_list_index = rnd_obj.check_the_list_status()
             rnd_obj.check_if_list_is_empty()
             if check_list_index:
+                get_the_score_before_going_to_end_screen = score_obj.show_value()
+                score_obj.save_the_score_before_we_go_to_end_sceen(get_the_score_before_going_to_end_screen)
                 end_screen()
 
             surface1.fill((255, 255, 255))
@@ -266,6 +262,101 @@ def main_game_loop():
 
             # Show the image on the screen.
             rnd_obj.display_screen(random_image)
+
+        pygame.display.update()
+
+        clock.tick(60)
+
+
+def save_sceen():
+    surface1.fill((255, 255, 255))
+    score_obj = Score(surface1, player_score)
+
+    my_text_box2 = RewrittenTextbox(600, 80, 140, 32, color_passive, color_active, base_font, surface1, active)
+    my_text_box2.draw()
+    save_sceen_running = True
+    clock = pygame.time.Clock()
+    read_score = score_obj.load_file_score()
+    hgh_obj = HighScoreClass(read_score, surface1)
+
+    while save_sceen_running:
+
+        # Pygame boiler code
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    my_text_box2.catch_user_events(event)
+                    user_input_word = my_text_box2.what_user_wrote()
+                    hgh_obj.save_to_high_score_list(user_input_word)
+                    very_last_sceen()
+
+            my_text_box2.catch_user_events(event)
+
+        my_text_box2.draw()
+
+        my_text_box2.update()
+        score_obj.show_value()
+        score_obj.showing_score_save_sceen(read_score)
+        pygame.display.update()
+
+        clock.tick(60)
+
+
+def very_last_sceen():
+    surface1.fill((255, 255, 255))
+    clock = pygame.time.Clock()
+    score_obj = Score(surface1, player_score)
+    read_score = score_obj.load_file_score()
+    hgh2_obj = HighScoreClass(read_score, surface1)
+    saved_score = True
+    last_sceen_running = True
+
+    while last_sceen_running:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_f:
+                    the_start_screen()
+
+                if event.key == pygame.K_v:
+                    # save_sceen()
+                    high_score_screen()
+
+                if event.key == pygame.K_a:
+                    end_running = False
+                    quit()
+
+        hgh2_obj.show_the_end(saved_score)
+
+        pygame.display.update()
+
+        clock.tick(60)
+
+
+def high_score_screen():
+    surface1.fill((255, 255, 255))
+    clock = pygame.time.Clock()
+    score_obj = Score(surface1, player_score)
+    read_score = score_obj.load_file_score()
+    hgh2_obj = HighScoreClass(read_score, surface1)
+    saved_score = True
+    hgh2_obj.sort_high_score_list()
+    hgh2_obj.show_high_score_on_screen()
+    high_score_screen_running = True
+
+    while high_score_screen_running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
 
         pygame.display.update()
 
