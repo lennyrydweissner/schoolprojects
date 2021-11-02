@@ -1,9 +1,12 @@
 import unittest
 import pygame
-
+import os
 from class_intro import Intro
+from score_class import Score
 from random_picture_class import RandomPictureGenerator
 from score_class import Score
+from end_scene import EndScene
+from highscore_class import HighScoreClass
 
 
 def dry_function():
@@ -190,6 +193,53 @@ class MyTestCase(unittest.TestCase):
         self.check_list_status = self.rnd_test_obj.check_the_list_status()
 
         self.assertNotEqual(True, self.check_list_status)
+
+    def testing_to_save_to_high_score_list(self):
+
+        surface1 = dry_function()
+
+        # Bypass the enter the name and give a name and a score directly
+        user_input_word = "Mr.Super Highscore"
+        user_score_to_save_to_the_high_score_list = "1000"
+        status = False
+        is_the_file_created = False
+
+        # Using an test high_score_file i dont want to pollute the real hgh score file.
+        # also a good way to check if the file is created and the score is there.
+        path_to_high_score_file = "Test_high_score_file.txt"
+        self.is_the_file_created = is_the_file_created
+        self.status = status
+        self.surface1 = surface1
+        self.user_input_word = user_input_word
+        self.user_score_to_save_to_the_high_score_list = user_score_to_save_to_the_high_score_list
+        self.path_to_high_score_file = path_to_high_score_file
+
+        # Creating the object
+        high_score_object_one = HighScoreClass(self.user_score_to_save_to_the_high_score_list, self.surface1)
+
+        # Call on the save_to_high_score_list method
+        high_score_object_one.save_to_high_score_list(self.user_input_word, path_to_high_score_file)
+
+        # Lets check if the object got our forced values
+        hob_name = high_score_object_one.user_name_to_save
+        hob_score = high_score_object_one.user_score_to_save_to_the_high_score_list
+
+        # if we got no exception hob_working should be true, and everything is working.
+        # also check so the file is created and are there.
+
+        # But for each test you do, you have to delete the Test_high_score_file.txt
+        # before running a new test.
+        hob_working = high_score_object_one.working
+
+        # is doing an extra check to se if the file is created as it should.
+        self.is_the_file_created = os.path.isfile('Test_high_score_file.txt')
+
+        if hob_working and self.is_the_file_created and hob_name == "Mr.Super Highscore" and hob_score == "1000":
+            self.status = True
+        else:
+            self.status = False
+
+        self.assertTrue(True, self.status)
 
 
 if __name__ == '__main__':

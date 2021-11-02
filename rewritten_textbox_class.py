@@ -61,7 +61,6 @@ class RewrittenTextbox:
                     if not self.active:
                         pass
                     else:
-                        print(self.user_text)
                         self.written_word = self.user_text
                         self.user_text = ''
                         self.active = False

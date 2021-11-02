@@ -100,7 +100,7 @@ class Score:
             self.adding_score()
             self.showing_score()
             self.value = self.player_score
-            print(self.value)
+            # print(self.value)
             self.right_wrong_answer_sound = 1
 
         if self.user_input_word == "":
@@ -200,11 +200,12 @@ class Score:
         try:
             self.file = open("the_score.txt", 'w', encoding="utf-8")
             self.file.write(str(the_score_user_have))
-            # self.file.write("\n")
             self.working = 1
+
         except BaseException as e:
             self.working = 0
             print(f"Something went wrong then i tried to save the score. {e} ")
+
         finally:
             self.file.close()
         return self.working

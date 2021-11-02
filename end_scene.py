@@ -55,22 +55,22 @@ class EndScene:
 
             self.display_surface.fill(WHITE)
             self.put_big_text_to_screen(self.text_one_output, 710, 50)
-            self.put_meny_text_to_screen(self.text_two_output, 700, 150)
-            self.put_meny_text_to_screen(self.text_four_output, 690, 250)
-            self.put_meny_text_to_screen(self.text_five_output, 690, 300)
-            self.put_meny_text_to_screen(self.text_six_output, 690, 350)
-            self.put_meny_text_to_screen(self.text_seven_output, 690, 400)
+            self.put_menu_text_to_screen(self.text_two_output, 700, 150)
+            self.put_menu_text_to_screen(self.text_four_output, 690, 250)
+            self.put_menu_text_to_screen(self.text_five_output, 690, 300)
+            self.put_menu_text_to_screen(self.text_six_output, 690, 350)
+            self.put_menu_text_to_screen(self.text_seven_output, 690, 400)
 
         else:
 
             self.display_surface.fill(WHITE)
             self.put_big_text_to_screen(self.text_one_output, 710, 50)
-            self.put_meny_text_to_screen(self.text_two_output, 700, 150)
-            self.put_meny_text_to_screen(self.text_five_output, 690, 300)
-            self.put_meny_text_to_screen(self.text_six_output, 690, 350)
-            self.put_meny_text_to_screen(self.text_seven_output, 690, 400)
+            self.put_menu_text_to_screen(self.text_two_output, 700, 150)
+            self.put_menu_text_to_screen(self.text_five_output, 690, 300)
+            self.put_menu_text_to_screen(self.text_six_output, 690, 350)
+            self.put_menu_text_to_screen(self.text_seven_output, 690, 400)
 
-    def put_meny_text_to_screen(self, output_text, text_pos_x, text_pos_y):
+    def put_menu_text_to_screen(self, output_text, text_pos_x, text_pos_y):
         self.font_to_rend = self.end_scene_font.render(output_text, True, PURPLE, WHITE)
         self.text_rect = self.font_to_rend.get_rect()
         self.text_rect.center = (text_pos_x, text_pos_y)

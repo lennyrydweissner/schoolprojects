@@ -71,7 +71,6 @@ class RandomPictureGenerator:
 
     def check_if_list_is_empty(self):
         if len(self.line_list) == 1:
-            print(len(self.line_list))
             self.time_to_go = True
 
     def check_the_list_status(self):

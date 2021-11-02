@@ -270,6 +270,7 @@ def main_game_loop():
 
 def save_sceen():
     surface1.fill((255, 255, 255))
+    path_to_high_score_file = "C:/this is what i use to github stavningsleken/Highscore.txt"
     score_obj = Score(surface1, player_score)
 
     my_text_box2 = RewrittenTextbox(600, 80, 140, 32, color_passive, color_active, base_font, surface1, active)
@@ -291,7 +292,7 @@ def save_sceen():
                 if event.key == pygame.K_RETURN:
                     my_text_box2.catch_user_events(event)
                     user_input_word = my_text_box2.what_user_wrote()
-                    hgh_obj.save_to_high_score_list(user_input_word)
+                    hgh_obj.save_to_high_score_list(user_input_word, path_to_high_score_file)
                     very_last_sceen()
 
             my_text_box2.catch_user_events(event)
@@ -327,7 +328,6 @@ def very_last_sceen():
                     the_start_screen()
 
                 if event.key == pygame.K_v:
-                    # save_sceen()
                     high_score_screen()
 
                 if event.key == pygame.K_a:
@@ -344,11 +344,12 @@ def very_last_sceen():
 def high_score_screen():
     surface1.fill((255, 255, 255))
     clock = pygame.time.Clock()
+    path_to_high_score_file = "C:/this is what i use to github stavningsleken/Highscore.txt"
     score_obj = Score(surface1, player_score)
     read_score = score_obj.load_file_score()
     hgh2_obj = HighScoreClass(read_score, surface1)
     saved_score = True
-    hgh2_obj.sort_high_score_list()
+    hgh2_obj.sort_high_score_list(path_to_high_score_file)
     hgh2_obj.show_high_score_on_screen()
 
     high_score_screen_running = True
