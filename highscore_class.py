@@ -1,11 +1,9 @@
 import pygame
-
-import end_scene
 from end_scene import EndScene
 
 
 # Make this class inherit from end_scene class so i can use
-# show_the_end class method, dont wanna write almost the same code again. :)
+# the_end_scene class methods, dont wanna write almost the same code again. :)
 # and i want to use the constants which are the colors.
 
 class HighScoreClass(EndScene):
@@ -25,9 +23,10 @@ class HighScoreClass(EndScene):
         hn0, hn1, hn2, hn3, hn4 = "", "", "", "", ""
         t1 = pygame.image.load("C:/This is what i use to github stavningsleken/meny bilder/highscore2.png")
         t2 = "TRYCK (G) FÖR ATT GÅ TILLBAKA."
-        # t1 = "HÖGSTA POÄNG LISTAN"
+
         self.t1 = t1
         self.t2 = t2
+
         # Self outputs here
         self.t1_output = t1
 
@@ -102,33 +101,26 @@ class HighScoreClass(EndScene):
 
         # Here we put the Highest score text in middle of screen
         self.surface.blit(self.t1, (300, 25))
-        # self.blitz(self.t1_output, 700, 50)
 
         # Here no.1 score user.
-        self.blitz(self.hn0, 550, 150)
-        self.blitz(self.hp0, 720, 150)
+        self.put_meny_text_to_screen(self.hn0, 550, 150)
+        self.put_meny_text_to_screen(self.hp0, 720, 150)
 
         # Here no.2 score user
-        self.blitz(self.hn1, 550, 200)
-        self.blitz(self.hp1, 720, 200)
+        self.put_meny_text_to_screen(self.hn1, 550, 200)
+        self.put_meny_text_to_screen(self.hp1, 720, 200)
 
         # Here no.3 score user
-        self.blitz(self.hn2, 550, 250)
-        self.blitz(self.hp2, 720, 250)
+        self.put_meny_text_to_screen(self.hn2, 550, 250)
+        self.put_meny_text_to_screen(self.hp2, 720, 250)
 
         # Here no.4 score user
-        self.blitz(self.hn3, 550, 300)
-        self.blitz(self.hp3, 720, 300)
+        self.put_meny_text_to_screen(self.hn3, 550, 300)
+        self.put_meny_text_to_screen(self.hp3, 720, 300)
 
         # Here no.5 score user
-        self.blitz(self.hn4, 550, 350)
-        self.blitz(self.hp4, 720, 350)
+        self.put_meny_text_to_screen(self.hn4, 550, 350)
+        self.put_meny_text_to_screen(self.hp4, 720, 350)
 
         # Go back alternative goes here
-        self.blitz(self.t2, 650, 550)
-
-    def blitz(self, output_text, text_pos_x, text_pos_y):
-        text_font_rend = self.high_score_font.render(output_text, True, end_scene.PURPLE, end_scene.WHITE)
-        text_rect = text_font_rend.get_rect()
-        text_rect.center = (text_pos_x, text_pos_y)
-        self.display_surface.blit(text_font_rend, text_rect)
+        self.put_meny_text_to_screen(self.t2, 650, 550)
