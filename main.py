@@ -11,7 +11,6 @@ import ctypes
 # importing my classes
 from class_intro import Intro
 from mouse_cord_class import MouseCords
-from word_class import RandomWords
 from filehandling_class import MyFileHandling
 from button import Button
 from random_picture_class import RandomPictureGenerator
