@@ -7,10 +7,10 @@
 20,Gunnar
 70,Emmy
 10,Mr.Highscore
-150,Felicia
+150,MISTER DATOR
 20,John
-180,Lenny
+180,MISTER HIGHSCORE
 0,Mr.noll
 20,Anna
 40,Mathias
-210,Mr 100%
+10,Jan

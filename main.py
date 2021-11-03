@@ -40,8 +40,7 @@ path_to_word_file = "bildfilen.txt"  # Filepath to the file with all words.
 start_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Starta.png")
 stopp_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Avsluta.png")
 main_meny_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Huvud meny.png")
-turn_off_music_img = pygame.image.load(
-    "C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
+turn_off_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
 turn_on_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Sätt på musiken.png")
 next_picture_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Nästa bild.png.")
 huge_logo_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Stavningsleken_huge.png")
@@ -177,11 +176,11 @@ def main_game_loop():
     rnd_obj = RandomPictureGenerator(surface1)
 
     # Creating an score object
-    real_score = 0
+
     score_obj = Score(surface1, player_score)
 
     # gets the player score for the first time.
-    real_score = score_obj.showing_score()
+    score_obj.showing_score()
 
     # Setting up the clock who controls the fps
     clock = pygame.time.Clock()
