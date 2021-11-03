@@ -9,10 +9,10 @@ class RandomPictureGenerator:
     # Constructor
     def __init__(self, display_surface):
         # Class variables
-        line_list = []  # This list is for all the words it can randomize from
-        random_word = ""  # This is the variable who holds the random word later.
-        f = ""  # The file object, used to open the txt file.
-        full_path = ""  # Pathway variable, who will hold the path to the pictures
+        line_list = []     # This list is for all the words it can randomize from
+        random_word = ""   # This is the variable who holds the random word later.
+        f = ""             # The file object, used to open the txt file.
+        full_path = ""     # Pathway variable, who will hold the path to the pictures
         random_image = ""  # Variable to hold the random image
         time_to_go = False
         check = False
@@ -32,7 +32,7 @@ class RandomPictureGenerator:
         image2 = pygame.transform.scale(image2, (200, 200))
         my_rect = image2.get_rect()
         my_rect.center = (630, 400)
-        # screen.blit(my_image, my_rect)
+
         self.display_surface.blit(image2, my_rect)
 
     def load_list_to_pick_random_word_from(self):

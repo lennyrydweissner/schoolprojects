@@ -228,7 +228,7 @@ class MyTestCase(unittest.TestCase):
         # also check so the file is created and are there.
 
         # But for each test you do, you have to delete the Test_high_score_file.txt
-        # before running a new test.
+        # before running a new test, otherwise you cant really tell if file was created.
         hob_working = high_score_object_one.working
 
         # is doing an extra check to se if the file is created as it should.

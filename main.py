@@ -25,6 +25,7 @@ pygame.init()
 # Variables that i need goes here:
 mx = 0  # This is the mouse tracker start coordinate x
 my = 0  # This is the mouse tracker start coordinate y
+
 black_color = (255, 255, 255)  # Black background color
 sc_x = 1450  # Screen size in x
 sc_y = 800  # Screen size in y
@@ -32,11 +33,6 @@ sc_y = 800  # Screen size in y
 # Make the pygame screen
 surface1 = pygame.display.set_mode((sc_x, sc_y))
 
-# Textbox variables.
-# color_passive = pygame.Color('green')
-# color_active = pygame.Color('black')
-
-# font = pygame.font.SysFont("verdana", 32)
 font = pygame.font.Font(None, 32)
 path_to_word_file = "bildfilen.txt"  # Filepath to the file with all words.
 
@@ -73,10 +69,10 @@ end_the_game_button = Button(460, 280, end_the_game_img)
 
 # creates all my instances here
 intro_object = Intro(surface1, black_color)
-mouse_cords_tracker = MouseCords(mx, my)  # Not gonna use this then the game is done. just in development phase
+mouse_cords_tracker = MouseCords(mx, my)  # Not in use anymore, but used under dev phase.
 read_my_file = MyFileHandling(path_to_word_file)
 
-# Testing new stuff here
+# Setting up the txt_box attributes
 base_font = pygame.font.Font(None, 32)
 user_text = ''
 color_active = pygame.Color('lightskyblue3')
@@ -213,7 +209,6 @@ def main_game_loop():
 
             score_obj.check_the_user_answer(user_input_word, random_word)
             soundcheck = score_obj.check_sound_state()
-            # typewriter_sound = my_text_box.check_type_sound()
 
             if soundcheck == 1:
                 intro_object.applauds_sound()
@@ -254,7 +249,7 @@ def main_game_loop():
             score_obj.showing_score()
             my_text_box.reset_mouseclick()
 
-            # Gets a random word from the line_list in class method random_image_generator
+            # Gets a random word
             random_word = rnd_obj.get_computer_randomized_word_from_list()
 
             # Load upp the image who is corresponding to the random word we got above

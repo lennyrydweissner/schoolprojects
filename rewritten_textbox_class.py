@@ -61,7 +61,7 @@ class RewrittenTextbox:
                     if not self.active:
                         pass
                     else:
-                        self.written_word = self.user_text
+                        self.written_word = self.user_text.lower()
                         self.user_text = ''
                         self.active = False
                         self.color = self.color = pygame.Color("grey")

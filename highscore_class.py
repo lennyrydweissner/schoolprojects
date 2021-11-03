@@ -22,7 +22,7 @@ class HighScoreClass(EndScene):
         texture = ""
         hp0, hp1, hp2, hp3, hp4 = "", "", "", "", ""
         hn0, hn1, hn2, hn3, hn4 = "", "", "", "", ""
-        t1 = pygame.image.load("C:/This is what i use to github stavningsleken/meny bilder/highscore2.png")
+        hgh_logo = pygame.image.load("C:/This is what i use to github stavningsleken/meny bilder/highscore2.png")
         t2 = "TRYCK (G) FÖR ATT GÅ TILLBAKA."
         path_to_high_score_file = "C:/this is what i use to github stavningsleken/Highscore.txt"
         working = False
@@ -30,11 +30,11 @@ class HighScoreClass(EndScene):
         self.texture = texture
         self.path_to_high_score_file = path_to_high_score_file
         self.working = working
-        self.t1 = t1
+        self.hgh_logo = hgh_logo
         self.t2 = t2
 
         # Self outputs here
-        self.t1_output = t1
+        self.t1_output = hgh_logo
 
         # Self fonts i want to use goes here
         self.high_score_font = high_score_font
@@ -65,7 +65,7 @@ class HighScoreClass(EndScene):
     def save_to_high_score_list(self, user_input_word, path_to_high_score_file):
         try:
             self.path_to_high_score_file = path_to_high_score_file
-            self.user_name_to_save = user_input_word
+            self.user_name_to_save = user_input_word.capitalize()
             self.file = open(self.path_to_high_score_file, "a", encoding="utf-8")
             self.working = True
         except FileNotFoundError as e:
@@ -136,7 +136,7 @@ class HighScoreClass(EndScene):
             self.counter += 1
 
         # Here we put the Highest score text in middle of screen
-        self.surface.blit(self.t1, (300, 25))
+        self.surface.blit(self.hgh_logo, (300, 25))
 
         # Here no.1 score user.
         self.put_menu_text_to_screen(self.hn0, 550, 150)

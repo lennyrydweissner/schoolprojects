@@ -10,6 +10,7 @@ class Intro:
         pygame.init()
         pygame.mixer.init()
         working = 0
+
         # Naming the game window.
         pygame.display.set_caption("STAVNINGSLEKEN MY FIRST SCHOOL PROJECT.")
 
