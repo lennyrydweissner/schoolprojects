@@ -6,6 +6,7 @@ for the music in this application.
 """
 import pygame
 import sys
+import ctypes
 
 # importing my classes
 from class_intro import Intro
@@ -95,7 +96,11 @@ def the_start_screen():
         surface1.fill((255, 255, 255))
 
         if main_logo_button.draw_button_to_screen(surface1):
-            pass
+            my_title = "Stavningsleken: Created by Lenny Ryd-Weissner"
+            my_text = "This project is free to use. You can use it as you want," \
+                      " but dont forget to give credit to www.bensound.com for the music."
+            my_style_num = 1
+            mbox(my_title, my_text, my_style_num)
 
         if start_the_game_button.draw_button_to_screen(surface1):
             # Start the game then user click on the button
@@ -362,6 +367,10 @@ def high_score_screen():
         pygame.display.update()
 
         clock.tick(60)
+
+
+def mbox(title, text, style):
+    return ctypes.windll.user32.MessageBoxW(0, text, title, style)
 
 
 def main():

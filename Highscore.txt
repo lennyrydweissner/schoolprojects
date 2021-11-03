@@ -11,3 +11,5 @@
 20,John
 180,Lenny
 0,Mr.noll
+20,Anna
+40,Mathias

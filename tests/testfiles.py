@@ -12,7 +12,6 @@ from highscore_class import HighScoreClass
 def dry_function():
     sc_x = 1450  # Screen size in x
     sc_y = 800  # Screen size in y
-    black_color = (255, 255, 255)
     surface1 = pygame.display.set_mode((sc_x, sc_y))
     return sc_x, sc_y, surface1
 
