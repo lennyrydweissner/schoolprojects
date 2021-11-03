@@ -40,7 +40,8 @@ path_to_word_file = "bildfilen.txt"  # Filepath to the file with all words.
 start_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Starta.png")
 stopp_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Avsluta.png")
 main_meny_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Huvud meny.png")
-turn_off_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
+turn_off_music_img = pygame.image.load(
+    "C:\This is what i use to github stavningsleken/meny bilder/Stäng av musiken.png")
 turn_on_music_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Sätt på musiken.png")
 next_picture_img = pygame.image.load("C:\This is what i use to github stavningsleken/meny bilder/Nästa bild.png.")
 huge_logo_img = pygame.image.load("C:\This is what i use to github stavningsleken/start_bilder/Stavningsleken_huge.png")
@@ -191,15 +192,12 @@ def main_game_loop():
     random_word = rnd_obj.get_computer_randomized_word_from_list()
     random_image = rnd_obj.display_next_image(random_word)
     rnd_obj.display_screen(random_image)
-    soundcheck = None
-    typewriter_sound = None
 
     while game_running:
 
         # Clear what was written in the user_input_word
         # every time the loop turns around
-        user_input_word = my_text_box.clear_written_word()
-        soundcheck = None
+        my_text_box.clear_written_word()
 
         # Pygame boiler code
         for event in pygame.event.get():
@@ -342,11 +340,13 @@ def very_last_sceen():
 def high_score_screen():
     surface1.fill((255, 255, 255))
     clock = pygame.time.Clock()
+
     path_to_high_score_file = "C:/this is what i use to github stavningsleken/Highscore.txt"
     score_obj = Score(surface1, player_score)
+
     read_score = score_obj.load_file_score()
     hgh2_obj = HighScoreClass(read_score, surface1)
-    saved_score = True
+
     hgh2_obj.sort_high_score_list(path_to_high_score_file)
     hgh2_obj.show_high_score_on_screen()
 

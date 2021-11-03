@@ -1,9 +1,6 @@
 import pygame
 from pygame.compat import geterror
 
-import math
-import sys
-
 
 class Intro:
     def __init__(self, surface1, black_color):
@@ -80,11 +77,11 @@ class Intro:
         return self.working
 
     def sound_of_typewriter(self):
-        # Not using this sound
+
         pygame.mixer.Sound.play(self.type_writer_sound)
 
     def stop_sound_of_typewriter(self):
-        # Not using this sound
+
         pygame.mixer.Sound.stop(self.type_writer_sound)
 
     def play_music(self):
@@ -111,5 +108,3 @@ class Intro:
             print('Cannot stop music: %s')
             raise SystemExit(str(geterror()))
         return self.working
-
-

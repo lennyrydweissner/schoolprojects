@@ -2,10 +2,6 @@ import pygame
 from end_scene import EndScene
 
 
-# Make this class inherit from end_scene class so i can use
-# the_end_scene class methods, dont wanna write almost the same code again. :)
-# and i want to use the constants which are the colors.
-
 class HighScoreClass(EndScene):
     def __init__(self, read_score, display_surface):
         super().__init__(display_surface)
@@ -91,6 +87,7 @@ class HighScoreClass(EndScene):
 
     def sort_high_score_list(self, path_to_high_score_file):
         try:
+            self.path_to_high_score_file = path_to_high_score_file
             self.file = open(self.path_to_high_score_file, "r", encoding="utf-8")
             self.working = True
         except FileNotFoundError as e:

@@ -1,5 +1,5 @@
 import pygame
-import sys
+
 
 # Constants in RGB Colors (Red, Green, Blue)
 WHITE = (255, 255, 255)
@@ -94,20 +94,19 @@ class Score:
         self.random_word = random_word
 
         if self.user_input_word == self.random_word:
-            # 1 Load the good answer image
+            # 1 Load the good answer image (lgi)
             lgi = self.load_good_answer_image()
             self.show_good_answer(lgi)
             self.adding_score()
             self.showing_score()
             self.value = self.player_score
-            # print(self.value)
             self.right_wrong_answer_sound = 1
 
         if self.user_input_word == "":
             pass
         else:
             if not self.user_input_word == self.random_word:
-                # Load the bad answer image
+                # Load the bad answer image (lbi)
                 lbi = self.load_bad_answer_image()
                 self.show_bad_answer(lbi)
                 self.showing_score()
@@ -145,7 +144,6 @@ class Score:
 
     def show_user_how_it_spells(self, random_word):
         font = pygame.font.SysFont('cambria', 18)
-        font2 = pygame.font.SysFont('cambria', 18)
         self.random_word = random_word
 
         # Makes the word in upper letters cause Felicia my daughter cant read small letters yet.

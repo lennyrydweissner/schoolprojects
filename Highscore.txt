@@ -14,3 +14,9 @@
 20,Anna
 40,Mathias
 10,Jan
+50,Karolina
+30,Nisse
+60,Joakim b
+20,Leo
+10,Björn
+20,Einar

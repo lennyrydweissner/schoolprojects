@@ -1,5 +1,5 @@
 import pygame
-import sys
+
 
 # Constants in RGB Colors (Red, Green, Blue)
 WHITE = (255, 255, 255)
